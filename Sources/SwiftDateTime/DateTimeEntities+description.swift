@@ -6,7 +6,7 @@ import Foundation
 
 extension DateTime: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     return "\(date), \(time)"
   }
 }
@@ -14,7 +14,7 @@ extension DateTime: CustomStringConvertible {
 
 extension DayMonthYear: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     return String(format: "%d.%02d.%04d", day, month, year)
   }
 }
@@ -22,7 +22,7 @@ extension DayMonthYear: CustomStringConvertible {
 
 extension DayMonthYearPeriod: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     return start == end ? "\(start)" : "\(start) — \(end)"
   }
 }
@@ -30,7 +30,7 @@ extension DayMonthYearPeriod: CustomStringConvertible {
 
 extension Duration: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     
     let hours = seconds / 3600
     let minutes = seconds / 60 - 60 * hours
@@ -49,7 +49,7 @@ extension Duration: CustomStringConvertible {
 
 extension HoursMinutesSeconds: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     let millisecondsString = (milliseconds == 0) ? "" : String(format: ".%03d", milliseconds)
     
     return String(
@@ -62,7 +62,7 @@ extension HoursMinutesSeconds: CustomStringConvertible {
 
 extension LocalDateTime: CustomStringConvertible {
   
-  var description: String {
+  public var description: String {
     return "\(date), \(time)"
   }
 }

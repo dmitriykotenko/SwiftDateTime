@@ -4,7 +4,7 @@
 import Foundation
 
 
-class DateTimeFormatter {
+public class DateTimeFormatter {
   
   private let dateFormatter = DayMonthYearFormatter()
   private let timeFormatter = HoursMinutesSecondsFormatter()

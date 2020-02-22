@@ -4,7 +4,7 @@
 import Foundation
 
 
-class TimeZoneOffsetFormatter {
+public class TimeZoneOffsetFormatter {
 
   private let expectedStringLength = 6 // "+03:00"
 

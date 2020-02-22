@@ -4,7 +4,7 @@
 import Foundation
 
 
-class DurationFormatter {
+public class DurationFormatter {
 
   func formatApproximately(_ duration: Duration) -> String {
     let sign = duration.seconds.signum()

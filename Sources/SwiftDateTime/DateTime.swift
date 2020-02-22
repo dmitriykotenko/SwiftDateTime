@@ -4,7 +4,7 @@
 import Foundation
 
 
-struct DateTime: Codable, Equatable, Hashable {
+public struct DateTime: Codable, Equatable, Hashable {
   
   let date: DayMonthYear
   let time: HoursMinutesSeconds  
@@ -56,7 +56,7 @@ struct DateTime: Codable, Equatable, Hashable {
 
 extension DateTime: Comparable {
   
-  static func < (this: DateTime, that: DateTime) -> Bool {
+  public static func < (this: DateTime, that: DateTime) -> Bool {
     if this.date != that.date {
       return this.date < that.date
     }

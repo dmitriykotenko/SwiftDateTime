@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-struct Duration: Codable, Equatable, Hashable {
+public struct Duration: Codable, Equatable, Hashable {
   
   static let zero = Duration(milliseconds: 0)
   
@@ -46,7 +46,7 @@ struct Duration: Codable, Equatable, Hashable {
 
 extension Duration: Comparable {
   
-  static func < (this: Duration, that: Duration) -> Bool {
+  public static func < (this: Duration, that: Duration) -> Bool {
     return this.milliseconds < that.milliseconds
   }
 }

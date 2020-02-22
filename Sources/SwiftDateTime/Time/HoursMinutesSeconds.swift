@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-struct HoursMinutesSeconds: Codable, Equatable, Hashable {
+public struct HoursMinutesSeconds: Codable, Equatable, Hashable {
 
   var hours: Int
   var minutes: Int
@@ -28,7 +28,7 @@ struct HoursMinutesSeconds: Codable, Equatable, Hashable {
 
 extension HoursMinutesSeconds: Comparable {
   
-  static func < (this: HoursMinutesSeconds, that: HoursMinutesSeconds) -> Bool {
+  public static func < (this: HoursMinutesSeconds, that: HoursMinutesSeconds) -> Bool {
     if this.hours != that.hours {
       return this.hours < that.hours
     }

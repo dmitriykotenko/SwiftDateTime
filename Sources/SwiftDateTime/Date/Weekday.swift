@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-enum Weekday: Int {
+public enum Weekday: Int {
   
   case monday = 1
   case tuesday = 2

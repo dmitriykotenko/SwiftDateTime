@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-struct DayMonthYearPeriod: Codable, Equatable, Hashable {
+public struct DayMonthYearPeriod: Codable, Equatable, Hashable {
   
   let start: DayMonthYear
   let end: DayMonthYear

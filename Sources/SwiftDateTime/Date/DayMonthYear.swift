@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-struct DayMonthYear: Codable, Equatable, Hashable {
+public struct DayMonthYear: Codable, Equatable, Hashable {
   
   var day: Int
   var month: Int
@@ -22,7 +22,7 @@ struct DayMonthYear: Codable, Equatable, Hashable {
 
 extension DayMonthYear: Comparable {
   
-  static func < (this: DayMonthYear, that: DayMonthYear) -> Bool {
+  public static func < (this: DayMonthYear, that: DayMonthYear) -> Bool {
     if this.year != that.year {
       return this.year < that.year
     }

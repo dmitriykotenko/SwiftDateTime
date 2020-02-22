@@ -4,7 +4,7 @@
 import Foundation
 
 
-class DayMonthYearFormatter {
+public class DayMonthYearFormatter {
 
   func stringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
     let year = String(format: "%04d", dayMonthYear.year)

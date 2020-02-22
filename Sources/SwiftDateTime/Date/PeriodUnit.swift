@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-enum PeriodUnit: String, Codable {
+public enum PeriodUnit: String, Codable {
 
   case day
   case week

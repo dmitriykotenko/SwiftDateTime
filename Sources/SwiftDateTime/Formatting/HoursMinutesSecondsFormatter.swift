@@ -4,7 +4,7 @@
 import Foundation
 
 
-class HoursMinutesSecondsFormatter {
+public class HoursMinutesSecondsFormatter {
   
   private let expectedStringLength = 12 // "23:07:52.483"
 
