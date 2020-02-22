@@ -6,6 +6,12 @@ public struct DayMonthYear: Codable, Equatable, Hashable {
   public var day: Int
   public var month: Int
   public var year: Int
+    
+  public init(day: Int, month: Int, year: Int) {
+    self.day = day
+    self.month = month
+    self.year = year
+  }
   
   public func copy(day: Int? = nil,
                    month: Int? = nil,
