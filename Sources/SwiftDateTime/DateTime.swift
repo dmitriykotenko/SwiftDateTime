@@ -6,29 +6,29 @@ import Foundation
 
 public struct DateTime: Codable, Equatable, Hashable {
   
-  let date: DayMonthYear
-  let time: HoursMinutesSeconds  
-  let timeZoneOffset: Duration
+  public let date: DayMonthYear
+  public let time: HoursMinutesSeconds
+  public let timeZoneOffset: Duration
   
-  init(date: DayMonthYear,
-       time: HoursMinutesSeconds,
-       timeZoneOffset: Duration) {
+    public init(date: DayMonthYear,
+                time: HoursMinutesSeconds,
+                timeZoneOffset: Duration) {
     
     self.date = date
     self.time = time
     self.timeZoneOffset = timeZoneOffset
   }
   
-  init(localDateTime: LocalDateTime,
-       timeZoneOffset: Duration) {
+  public init(localDateTime: LocalDateTime,
+              timeZoneOffset: Duration) {
     self.date = localDateTime.date
     self.time = localDateTime.time
     self.timeZoneOffset = timeZoneOffset
   }
   
-  func copy(date: DayMonthYear? = nil,
-            time: HoursMinutesSeconds? = nil,
-            timeZoneOffset: Duration? = nil) -> DateTime {
+  public func copy(date: DayMonthYear? = nil,
+                   time: HoursMinutesSeconds? = nil,
+                   timeZoneOffset: Duration? = nil) -> DateTime {
     return DateTime(
       date: date ?? self.date,
       time: time ?? self.time,
@@ -36,8 +36,8 @@ public struct DateTime: Codable, Equatable, Hashable {
     )
   }
   
-  func copy(localDateTime: LocalDateTime? = nil,
-            timeZoneOffset: Duration? = nil) -> DateTime {
+  public func copy(localDateTime: LocalDateTime? = nil,
+                   timeZoneOffset: Duration? = nil) -> DateTime {
     return DateTime(
       date: localDateTime?.date ?? self.date,
       time: localDateTime?.time ?? self.time,
@@ -45,7 +45,7 @@ public struct DateTime: Codable, Equatable, Hashable {
     )
   }
 
-  var local: LocalDateTime {
+  public var local: LocalDateTime {
     return LocalDateTime(
       date: date,
       time: time

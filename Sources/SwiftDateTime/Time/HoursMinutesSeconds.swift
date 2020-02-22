@@ -3,26 +3,26 @@
 
 public struct HoursMinutesSeconds: Codable, Equatable, Hashable {
 
-  var hours: Int
-  var minutes: Int
-  var seconds: Int
-  var milliseconds: Int
+  public var hours: Int
+  public var minutes: Int
+  public var seconds: Int
+  public var milliseconds: Int
   
-  init(hours: Int, minutes: Int, seconds: Int, milliseconds: Int = 0) {
+  public init(hours: Int, minutes: Int, seconds: Int, milliseconds: Int = 0) {
     self.hours = hours
     self.minutes = minutes
     self.seconds = seconds
     self.milliseconds = milliseconds
   }
   
-  init(secondsFromMidnight: Int, milliseconds: Int = 0) {
+  public init(secondsFromMidnight: Int, milliseconds: Int = 0) {
     hours = secondsFromMidnight / 3600
     minutes = (secondsFromMidnight / 60) - hours * 60
     seconds = secondsFromMidnight % 60
     self.milliseconds = milliseconds
   }
   
-  static let zero = HoursMinutesSeconds(hours: 0, minutes: 0, seconds: 0)
+  public static let zero = HoursMinutesSeconds(hours: 0, minutes: 0, seconds: 0)
 }
 
 

@@ -3,24 +3,24 @@
 import Foundation
 
 
-class Clock {
+public class Clock {
 
   private let calendar = Calendar(identifier: .gregorian)
   private let datesManipulator = DatesManipulator()
   
-  var today: DayMonthYear {
+  public var today: DayMonthYear {
     return now.date
   }
   
-  var tomorrow: DayMonthYear {
+  public var tomorrow: DayMonthYear {
     return datesManipulator.nextDay(today)
   }
 
-  var yesterday: DayMonthYear {
+  public var yesterday: DayMonthYear {
     return datesManipulator.previousDay(today)
   }
 
-  var now: DateTime {
+  public var now: DateTime {
     let nowDate = Date()
     let timeZoneOffsetSeconds = calendar.timeZone.secondsFromGMT(for: nowDate)
     

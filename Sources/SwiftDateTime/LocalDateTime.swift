@@ -6,11 +6,11 @@ import Foundation
 
 public struct LocalDateTime: Codable, Equatable, Hashable {
   
-  let date: DayMonthYear
-  let time: HoursMinutesSeconds
+  public let date: DayMonthYear
+  public let time: HoursMinutesSeconds
   
-  func copy(date: DayMonthYear? = nil,
-            time: HoursMinutesSeconds? = nil) -> LocalDateTime {
+  public func copy(date: DayMonthYear? = nil,
+                   time: HoursMinutesSeconds? = nil) -> LocalDateTime {
     return LocalDateTime(
       date: date ?? self.date,
       time: time ?? self.time

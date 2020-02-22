@@ -3,13 +3,13 @@
 
 public struct DayMonthYear: Codable, Equatable, Hashable {
   
-  var day: Int
-  var month: Int
-  var year: Int
+  public var day: Int
+  public var month: Int
+  public var year: Int
   
-  func copy(day: Int? = nil,
-            month: Int? = nil,
-            year: Int? = nil) -> DayMonthYear {
+  public func copy(day: Int? = nil,
+                   month: Int? = nil,
+                   year: Int? = nil) -> DayMonthYear {
     
     return DayMonthYear(
       day: day ?? self.day,
