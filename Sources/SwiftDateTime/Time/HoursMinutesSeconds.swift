@@ -21,6 +21,19 @@ public struct HoursMinutesSeconds: Codable, Equatable, Hashable {
     seconds = secondsFromMidnight % 60
     self.milliseconds = milliseconds
   }
+    
+  public init(durationFromMidnight: Duration) {
+    self.init(
+        secondsFromMidnight: durationFromMidnight.seconds,
+        milliseconds: durationFromMidnight.thousandths
+    )
+  }
+    
+  public var durationFromMidnight: Duration {
+    return Duration(
+      milliseconds: (hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds
+    )
+  }
   
   public static let zero = HoursMinutesSeconds(hours: 0, minutes: 0, seconds: 0)
 }

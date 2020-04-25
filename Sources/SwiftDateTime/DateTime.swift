@@ -10,9 +10,9 @@ public struct DateTime: Codable, Equatable, Hashable {
   public let time: HoursMinutesSeconds
   public let timeZoneOffset: Duration
   
-    public init(date: DayMonthYear,
-                time: HoursMinutesSeconds,
-                timeZoneOffset: Duration) {
+  public init(date: DayMonthYear,
+              time: HoursMinutesSeconds,
+              timeZoneOffset: Duration) {
     
     self.date = date
     self.time = time
@@ -44,27 +44,11 @@ public struct DateTime: Codable, Equatable, Hashable {
       timeZoneOffset: timeZoneOffset ?? self.timeZoneOffset
     )
   }
-
+  
   public var local: LocalDateTime {
     return LocalDateTime(
       date: date,
       time: time
     )
-  }
-}
-
-
-extension DateTime: Comparable {
-  
-  public static func < (this: DateTime, that: DateTime) -> Bool {
-    if this.date != that.date {
-      return this.date < that.date
-    }
-
-    if this.time != that.time {
-      return this.time < that.time
-    }
-    
-    return this.timeZoneOffset > that.timeZoneOffset
   }
 }
