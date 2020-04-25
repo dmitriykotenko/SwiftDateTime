@@ -221,7 +221,7 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
 private extension DateTimeFormatterTests {
   
   func formatAndThenParse(_ dateTime: DateTime) -> ParseResult<DateTime> {
-    return formatter.dateTimeFromString(formatter.stringFromDateTime(dateTime))
+    return formatter.canonicalDateTimeFromString(formatter.stringFromDateTime(dateTime))
   }
   
   func checkThat(_ dateTime: DateTime,
@@ -234,7 +234,7 @@ private extension DateTimeFormatterTests {
   
   func checkThat(_ string: String,
                  parsedTo expectedDateTime: DateTime) {
-    switch formatter.dateTimeFromString(string) {
+    switch formatter.canonicalDateTimeFromString(string) {
     case .failure(let error):
       XCTFail("Error when parsing valid date time string \"\(string)\": \(error.localizedDescription)")
     case .success(let actualDateTime) where actualDateTime != expectedDateTime:
@@ -245,7 +245,7 @@ private extension DateTimeFormatterTests {
   }
   
   func checkParsingOfInvalidString(_ string: String) {
-    switch formatter.dateTimeFromString(string) {
+    switch formatter.canonicalDateTimeFromString(string) {
     case .failure:
       break
     case .success(let actualDateTime):

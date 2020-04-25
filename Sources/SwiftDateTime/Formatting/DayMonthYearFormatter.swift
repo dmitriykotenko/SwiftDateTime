@@ -6,7 +6,17 @@ import Foundation
 
 public class DayMonthYearFormatter {
   
-  public func stringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
+  public init() {}
+  
+  public func dotBasedStringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
+    let year = String(format: "%04d", dayMonthYear.year)
+    let month = String(format: "%02d", dayMonthYear.month)
+    let day = String(format: "%02d", dayMonthYear.day)
+    
+    return "\(day).\(month).\(year)"
+  }
+
+  public func canonicalStringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
     let year = String(format: "%04d", dayMonthYear.year)
     let month = String(format: "%02d", dayMonthYear.month)
     let day = String(format: "%02d", dayMonthYear.day)

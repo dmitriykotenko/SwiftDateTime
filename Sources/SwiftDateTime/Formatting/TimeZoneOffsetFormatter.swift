@@ -7,6 +7,8 @@ import Foundation
 public class TimeZoneOffsetFormatter {
 
   private let expectedStringLength = 6 // "+03:00"
+  
+  public init() {}
 
   public func stringFromTimeZoneOffset(_ offset: Duration) -> String {
     let positive = offset.milliseconds >= 0
@@ -22,7 +24,24 @@ public class TimeZoneOffsetFormatter {
     return "\(sign)\(hoursString):\(minutesString)"
   }
 
+  public func timeZoneOffsetFromDateString(_ dateString: String) -> ParseResult<Duration> {
+    return timeZoneOffsetFromString(
+      timeZoneComponent(dateString: dateString)
+    )
+  }
+  
+  private func timeZoneComponent(dateString: String) -> String {
+    let timeZoneIndex = dateString.lastIndex(of: "Z")
+      ?? dateString.lastIndex(of: "z")
+      ?? dateString.lastIndex(of: "+")
+      ?? dateString.lastIndex(of: "-")
+      ?? dateString.endIndex
+    
+    return String(dateString.suffix(from: timeZoneIndex))
+  }
+
   public func timeZoneOffsetFromString(_ string: String) -> ParseResult<Duration> {
+    guard string.first?.lowercased() != "z" else { return .success(.zero) }
     
     guard string.count == expectedStringLength else { return .failure(.invalidTimeZoneOffset(string)) }
     

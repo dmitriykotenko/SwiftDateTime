@@ -9,17 +9,32 @@ public class DateTimeFormatter {
   private let dateFormatter = DayMonthYearFormatter()
   private let timeFormatter = HoursMinutesSecondsFormatter()
   private let timeZoneOffsetFormatter = TimeZoneOffsetFormatter()
+
+  public var nestedFormatter: DateFormatter?
   
+  public init(_ nestedFormatter: DateFormatter? = nil) {
+    self.nestedFormatter = nestedFormatter
+  }
+
   public func stringFromDateTime(_ dateTime: DateTime) -> String {
     
-    let dateString = dateFormatter.stringFromDayMonthYear(dateTime.date)
+    let dateString = dateFormatter.canonicalStringFromDayMonthYear(dateTime.date)
     let timeString = timeFormatter.stringFromTime(dateTime.time)
     let timeZoneString = timeZoneOffsetFormatter.stringFromTimeZoneOffset(dateTime.timeZoneOffset)
     
     return "\(dateString) \(timeString) \(timeZoneString)"
   }
   
-  public func dateTimeFromString(_ string: String) -> ParseResult<DateTime> {
+  public func dateTime(string: String) -> ParseResult<DateTime> {
+    switch nestedFormatter {
+    case nil:
+      return canonicalDateTimeFromString(string)
+    default:
+      return customizableDateTimeFromString(string)
+    }
+  }
+
+  public func canonicalDateTimeFromString(_ string: String) -> ParseResult<DateTime> {
     let dateAndTimeAndZone = string.components(separatedBy: " ")
     
     guard dateAndTimeAndZone.count == 3 else { return .failure(.invalidDateTime(string)) }
@@ -40,6 +55,19 @@ public class DateTimeFormatter {
       }}}
     
     return result
+  }
+
+  public func customizableDateTimeFromString(_ string: String) -> ParseResult<DateTime> {
+    let moment = nestedFormatter?.date(from: string)
+    let timeZoneOffset = timeZoneOffsetFormatter.timeZoneOffsetFromDateString(string)
+    let timeZone = timeZoneOffset.map { TimeZone(secondsFromGMT: $0.seconds) }
+    
+    switch (moment, timeZone) {
+    case (let date?, .success(let zone?)):
+      return .success(DateTime(moment: date, timeZone: zone))
+    default:
+      return .failure(.invalidDateTime(string))
+    }
   }
 }
 

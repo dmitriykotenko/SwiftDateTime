@@ -8,6 +8,8 @@ public class HoursMinutesSecondsFormatter {
   
   private let expectedStringLength = 12 // "23:07:52.483"
   
+  public init() {}
+
   public func stringFromTime(_ time: HoursMinutesSeconds) -> String {
     let hours = String(format: "%02d", time.hours)
     let minutes = String(format: "%02d", time.minutes)
