@@ -25,19 +25,19 @@ public class TimeZoneOffsetFormatter {
   }
 
   public func timeZoneOffsetFromDateString(_ dateString: String) -> ParseResult<Duration> {
-    return timeZoneOffsetFromString(
+    return
       timeZoneComponent(dateString: dateString)
-    )
+      .map { timeZoneOffsetFromString($0) }
+      ?? .success(.zero)
   }
   
-  private func timeZoneComponent(dateString: String) -> String {
+  private func timeZoneComponent(dateString: String) -> String? {
     let timeZoneIndex = dateString.lastIndex(of: "Z")
       ?? dateString.lastIndex(of: "z")
       ?? dateString.lastIndex(of: "+")
       ?? dateString.lastIndex(of: "-")
-      ?? dateString.endIndex
     
-    return String(dateString.suffix(from: timeZoneIndex))
+    return timeZoneIndex.map { String(dateString.suffix(from: $0)) }
   }
 
   public func timeZoneOffsetFromString(_ string: String) -> ParseResult<Duration> {
