@@ -21,6 +21,10 @@ public struct DayMonthYearPeriod: Codable, Equatable, Hashable {
   var days: [DayMonthYear] {
     return Array(DayMonthYearsSequence(self))
   }
+  
+  var duration: CalendarDuration {
+    return DatesManipulator().duration(from: start, to: end)
+  }
 }
 
 

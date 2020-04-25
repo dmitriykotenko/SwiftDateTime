@@ -57,4 +57,11 @@ private extension Weekday {
     
     return Weekday(rawValue: raw)!
   }
+  
+  func plus(_ duration: CalendarDuration) -> Weekday {
+    var raw = (rawValue + duration.days) % 7
+    if raw < 1 { raw += 7 }
+    
+    return Weekday(rawValue: raw)!
+  }
 }

@@ -25,9 +25,30 @@ class DatesManipulator {
       builder.absoluteDay(a) + days
     )
   }
-  
+
   func date(_ a: DayMonthYear,
             minusDays days: Int) -> DayMonthYear {
     return date(a, plusDays: -days)
+  }
+}
+
+
+extension DatesManipulator {
+
+  func duration(from a: DayMonthYear, to b: DayMonthYear) -> CalendarDuration {
+    return CalendarDuration(days: days(from: a, to: b))
+  }
+
+  func date(_ a: DayMonthYear,
+            plus duration: CalendarDuration) -> DayMonthYear {
+    
+    return parser.dayMonthYear(absoluteDay:
+      builder.absoluteDay(a) + duration.days
+    )
+  }
+  
+  func date(_ a: DayMonthYear,
+            minus duration: CalendarDuration) -> DayMonthYear {
+    return date(a, plus: -duration)
   }
 }
