@@ -27,6 +27,9 @@ public struct DayMonthYear: Codable, Equatable, Hashable {
   public var monthYear: MonthYear {
     return MonthYear(month: month, year: year)
   }
+  
+  public static let distantPast = DayMonthYear(day: 1, month: 1, year: -5000)
+  public static let distantFuture = DayMonthYear(day: 1, month: 1, year: 5000)
 }
 
 

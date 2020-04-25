@@ -16,6 +16,9 @@ public struct LocalDateTime: Codable, Equatable, Hashable {
       time: time ?? self.time
     )
   }
+  
+  public static let distantPast = DayMonthYear.distantPast.time(.zero)
+  public static let distantFuture = DayMonthYear.distantFuture.time(.zero)
 }
 
 

@@ -9,7 +9,7 @@ public struct DateTime: Codable, Equatable, Hashable {
   public let date: DayMonthYear
   public let time: HoursMinutesSeconds
   public let timeZoneOffset: Duration
-  
+
   public init(date: DayMonthYear,
               time: HoursMinutesSeconds,
               timeZoneOffset: Duration) {
@@ -51,4 +51,7 @@ public struct DateTime: Codable, Equatable, Hashable {
       time: time
     )
   }
+  
+  public static let distantPast = LocalDateTime.distantPast.zone(.zero)
+  public static let distantFuture = LocalDateTime.distantFuture.zone(.zero)
 }
