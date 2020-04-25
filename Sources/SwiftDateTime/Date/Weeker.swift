@@ -10,7 +10,7 @@ public class Weeker {
   
   private let manipulator = DatesManipulator()
   
-  func week(_ dayMonthYear: DayMonthYear) -> DayMonthYearPeriod {
+  public func week(_ dayMonthYear: DayMonthYear) -> DayMonthYearPeriod {
     let start = weekstart(dayMonthYear)
 
     return DayMonthYearPeriod(
@@ -19,17 +19,17 @@ public class Weeker {
     )
   }
   
-  func weekday(_ dayMonthYear: DayMonthYear) -> Weekday {
+  public func weekday(_ dayMonthYear: DayMonthYear) -> Weekday {
     let daysSinceMonday = manipulator.days(from: reference.dayMonthYear, to: dayMonthYear)
     
     return reference.weekday.plus(days: daysSinceMonday)
   }
   
-  func weekstart(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
+  public func weekstart(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
     return last(.monday, before: dayMonthYear)
   }
   
-  func weekend(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
+  public func weekend(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
     return first(.sunday, after: dayMonthYear)
   }
 

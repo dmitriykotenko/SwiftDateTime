@@ -6,6 +6,18 @@ import Foundation
 
 extension DateTime: Comparable {
   
+  public static func < (this: DateTime, that: DateTime) -> Bool {
+    // Translate both datetimes to same time zone.
+    let thisInUtc = this.inUtc()
+    let thatInUtc = that.inUtc()
+    
+    if thisInUtc.local != thatInUtc.local {
+      return thisInUtc.local < thatInUtc.local
+    }
+    
+    return this.timeZoneOffset < that.timeZoneOffset
+  }
+
   public func inUtc() -> DateTime {
     let (daysCorrection, fixedTime) = toUtc(time: time, timeZoneOffset: timeZoneOffset)
     
@@ -29,17 +41,5 @@ extension DateTime: Comparable {
         durationFromMidnight: millisecondsFromMidnight
       )
     )
-  }
-  
-  public static func < (this: DateTime, that: DateTime) -> Bool {
-    // Translate both datetimes to same time zone.
-    let thisInUtc = this.inUtc()
-    let thatInUtc = that.inUtc()
-    
-    if thisInUtc.local != thatInUtc.local {
-      return thisInUtc.local < thatInUtc.local
-    }
-    
-    return this.timeZoneOffset < that.timeZoneOffset
   }
 }

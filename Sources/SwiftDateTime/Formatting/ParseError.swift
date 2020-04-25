@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-enum ParseError: Error {
+public enum ParseError: Error {
     
     case invalidNonNegativeInteger(String)
     case invalidDayMonthYear(String)

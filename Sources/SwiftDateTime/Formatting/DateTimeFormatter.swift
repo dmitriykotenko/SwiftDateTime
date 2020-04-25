@@ -10,7 +10,7 @@ public class DateTimeFormatter {
   private let timeFormatter = HoursMinutesSecondsFormatter()
   private let timeZoneOffsetFormatter = TimeZoneOffsetFormatter()
   
-  func stringFromDateTime(_ dateTime: DateTime) -> String {
+  public func stringFromDateTime(_ dateTime: DateTime) -> String {
     
     let dateString = dateFormatter.stringFromDayMonthYear(dateTime.date)
     let timeString = timeFormatter.stringFromTime(dateTime.time)
@@ -19,7 +19,7 @@ public class DateTimeFormatter {
     return "\(dateString) \(timeString) \(timeZoneString)"
   }
   
-  func dateTimeFromString(_ string: String) -> ParseResult<DateTime> {
+  public func dateTimeFromString(_ string: String) -> ParseResult<DateTime> {
     let dateAndTimeAndZone = string.components(separatedBy: " ")
     
     guard dateAndTimeAndZone.count == 3 else { return .failure(.invalidDateTime(string)) }

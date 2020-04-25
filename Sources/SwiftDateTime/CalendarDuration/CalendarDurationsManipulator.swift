@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-extension CalendarDuration {
+public extension CalendarDuration {
   
   static prefix func - (duration: CalendarDuration) -> CalendarDuration {
     return CalendarDuration(days: -duration.days)

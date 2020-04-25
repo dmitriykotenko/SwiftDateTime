@@ -53,7 +53,7 @@ public extension Int {
 }
 
 
-extension DayMonthYear {
+public extension DayMonthYear {
   
   func time(_ hours: Int,
             _ minutes: Int,
@@ -78,7 +78,7 @@ extension DayMonthYear {
 }
 
 
-extension LocalDateTime {
+public extension LocalDateTime {
   
   func utc() -> DateTime {
     return DateTime(

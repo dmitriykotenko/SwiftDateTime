@@ -5,17 +5,17 @@ import Foundation
 
 
 public class DurationFormatter {
-
-  func formatApproximately(_ duration: Duration) -> String {
+  
+  public func formatApproximately(_ duration: Duration) -> String {
     let sign = duration.seconds.signum()
     let absSeconds = abs(duration.seconds)
-
+    
     let hours = absSeconds / 3600
     let minutes = absSeconds / 60 - 60 * hours
     let secondsOfMinute = absSeconds % 60    
     
     let components = DateComponents(hour: hours, minute: minutes, second: secondsOfMinute)
-
+    
     let formatter = DateComponentsFormatter()
     
     switch (hours, minutes) {
@@ -28,11 +28,11 @@ public class DurationFormatter {
     formatter.zeroFormattingBehavior = .dropLeading
     
     let signString = formatSign(sign)
-
+    
     return signString + (formatter.string(from: components) ?? "")
   }
   
-  func formatExactly(_ duration: Duration) -> String {
+  public func formatExactly(_ duration: Duration) -> String {
     let sign = duration.seconds.signum()
     let seconds = abs(duration.seconds)
     

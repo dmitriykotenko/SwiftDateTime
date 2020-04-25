@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-extension Duration {
+public extension Duration {
   
   static prefix func - (duration: Duration) -> Duration {
     return Duration(milliseconds: -duration.milliseconds)

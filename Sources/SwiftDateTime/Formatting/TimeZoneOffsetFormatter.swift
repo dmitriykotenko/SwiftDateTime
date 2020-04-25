@@ -8,7 +8,7 @@ public class TimeZoneOffsetFormatter {
 
   private let expectedStringLength = 6 // "+03:00"
 
-  func stringFromTimeZoneOffset(_ offset: Duration) -> String {
+  public func stringFromTimeZoneOffset(_ offset: Duration) -> String {
     let positive = offset.milliseconds >= 0
     
     let sign = positive ? "+" : "-"
@@ -22,7 +22,7 @@ public class TimeZoneOffsetFormatter {
     return "\(sign)\(hoursString):\(minutesString)"
   }
 
-  func timeZoneOffsetFromString(_ string: String) -> ParseResult<Duration> {
+  public func timeZoneOffsetFromString(_ string: String) -> ParseResult<Duration> {
     
     guard string.count == expectedStringLength else { return .failure(.invalidTimeZoneOffset(string)) }
     

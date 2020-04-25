@@ -3,16 +3,12 @@
 
 public struct CalendarDuration: Codable, Equatable, Hashable {
   
-  static let zero = CalendarDuration(days: 0)
+  public static let zero = CalendarDuration(days: 0)
   
-  var days: Int
+  public var days: Int
   
-  var signum: Int {
+  public var signum: Int {
     return Int(days.signum())
-  }
-  
-  init(days: Int) {
-    self.days = days
   }
 }
 

@@ -4,10 +4,10 @@
 import Foundation
 
 
-class LocalDateTimesManipulator {
+public class LocalDateTimesManipulator {
   
-  func localDateTime(_ dateTime: LocalDateTime,
-                     plus duration: Duration) -> LocalDateTime {
+  public func localDateTime(_ dateTime: LocalDateTime,
+                            plus duration: Duration) -> LocalDateTime {
     let (days, time) = daysAndTime(dateTime.time, plus: duration)
     
     return LocalDateTime(
@@ -16,8 +16,8 @@ class LocalDateTimesManipulator {
     )
   }
   
-  func localDateTime(_ dateTime: LocalDateTime,
-                     minus duration: Duration) -> LocalDateTime {
+  public func localDateTime(_ dateTime: LocalDateTime,
+                            minus duration: Duration) -> LocalDateTime {
     return localDateTime(
       dateTime,
       plus: Duration(
@@ -29,7 +29,7 @@ class LocalDateTimesManipulator {
   
   private func daysAndTime(_ time: HoursMinutesSeconds,
                            plus duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
-    return daysAndTime(time.toDuration + duration)
+    return daysAndTime(time.durationFromMidnight + duration)
   }
   
   private func daysAndTime(_ duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
@@ -47,19 +47,6 @@ class LocalDateTimesManipulator {
         secondsFromMidnight: remainingSeconds,
         milliseconds: milliseconds
       )
-    )
-  }
-}
-
-
-fileprivate extension HoursMinutesSeconds {
-  
-  var toDuration: Duration {
-    return Duration(
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-      thousandths: milliseconds
     )
   }
 }

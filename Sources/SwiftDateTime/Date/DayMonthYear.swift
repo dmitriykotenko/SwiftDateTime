@@ -23,6 +23,10 @@ public struct DayMonthYear: Codable, Equatable, Hashable {
       year: year ?? self.year
     )
   }
+  
+  public var monthYear: MonthYear {
+    return MonthYear(month: month, year: year)
+  }
 }
 
 

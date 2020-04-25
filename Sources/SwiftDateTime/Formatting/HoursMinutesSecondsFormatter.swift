@@ -7,8 +7,8 @@ import Foundation
 public class HoursMinutesSecondsFormatter {
   
   private let expectedStringLength = 12 // "23:07:52.483"
-
-  func stringFromTime(_ time: HoursMinutesSeconds) -> String {
+  
+  public func stringFromTime(_ time: HoursMinutesSeconds) -> String {
     let hours = String(format: "%02d", time.hours)
     let minutes = String(format: "%02d", time.minutes)
     let seconds = String(format: "%02d", time.seconds)
@@ -17,7 +17,7 @@ public class HoursMinutesSecondsFormatter {
     return "\(hours):\(minutes):\(seconds).\(milliseconds)"
   }
   
-  func timeFromString(_ string: String) -> ParseResult<HoursMinutesSeconds> {
+  public func timeFromString(_ string: String) -> ParseResult<HoursMinutesSeconds> {
     guard string.count == expectedStringLength else { return .failure(.invalidHoursMinutesSeconds(string)) }
     
     let hoursMinutesSeconds = string.components(separatedBy: ":")
@@ -34,9 +34,9 @@ public class HoursMinutesSecondsFormatter {
       let seconds = Int(secondsMilliseconds[0]),
       let milliseconds = Int(secondsMilliseconds[1]),
       isValid(hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds)
-    else {
+      else {
         return .failure(.invalidHoursMinutesSeconds(string))
-    }
+      }
     
     return .success(
       HoursMinutesSeconds(

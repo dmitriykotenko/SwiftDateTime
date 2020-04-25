@@ -5,8 +5,8 @@ import Foundation
 
 
 public class DayMonthYearFormatter {
-
-  func stringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
+  
+  public func stringFromDayMonthYear(_ dayMonthYear: DayMonthYear) -> String {
     let year = String(format: "%04d", dayMonthYear.year)
     let month = String(format: "%02d", dayMonthYear.month)
     let day = String(format: "%02d", dayMonthYear.day)
@@ -14,20 +14,20 @@ public class DayMonthYearFormatter {
     return "\(year)-\(month)-\(day)"
   }
   
-  func dayMonthYearFromString(_ string: String) -> ParseResult<DayMonthYear> {
+  public func dayMonthYearFromString(_ string: String) -> ParseResult<DayMonthYear> {
     let firstMinus = string.prefix { $0 == "-" }
     let withoutMinus = string.drop { $0 == "-" }
     guard firstMinus.count <= 1 else { return .failure(.invalidDayMonthYear(string)) }
     
     let yearSign = firstMinus.isEmpty ? 1 : -1
     let splittedString = withoutMinus.components(separatedBy: "-")
-
+    
     guard splittedString.count == 3 else { return .failure(.invalidDayMonthYear(string)) }
-
+    
     let yearString = splittedString[0]
     let monthString = splittedString[1]
     let dayString = splittedString[2]
-
+    
     guard
       yearString.count >= 4,
       monthString.count == 2,
@@ -55,7 +55,7 @@ public class DayMonthYearFormatter {
                 )
               )
             } else {
-                return .failure(.invalidDayMonthYear(string))
+              return .failure(.invalidDayMonthYear(string))
             }
           }
         }
@@ -92,7 +92,7 @@ private extension String {
     if allSatisfy({ isDecimalDigit($0) }), let number = Int(self) {
       return .success(number)
     } else {
-        return .failure(.invalidNonNegativeInteger(self))
+      return .failure(.invalidNonNegativeInteger(self))
     }
   }
   
