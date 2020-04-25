@@ -1,11 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-import XCTest
-@testable import SwiftDateTime
-
-
-extension Int {
+public extension Int {
   
   func january(_ year: Int) -> DayMonthYear {
     return DayMonthYear(day: self, month: 1, year: year)
@@ -63,15 +59,20 @@ extension DayMonthYear {
             _ minutes: Int,
             _ seconds: Int = 0,
             _ milliseconds: Int = 0) -> LocalDateTime {
-    
-    return LocalDateTime(
-      date: self,
-      time: HoursMinutesSeconds(
+    return time(
+      HoursMinutesSeconds(
         hours: hours,
         minutes: minutes,
         seconds: seconds,
         milliseconds: milliseconds
       )
+    )
+  }
+  
+  func time(_ time: HoursMinutesSeconds) -> LocalDateTime {
+    return LocalDateTime(
+      date: self,
+      time: time
     )
   }
 }
@@ -93,6 +94,13 @@ extension LocalDateTime {
         negative: hours < 0,
         hours: abs(hours)
       )
+    )
+  }
+  
+  func zone(_ timeZoneOffset: Duration) -> DateTime {
+    return DateTime(
+      localDateTime: self,
+      timeZoneOffset: timeZoneOffset
     )
   }
 }

@@ -7,7 +7,7 @@ import XCTest
 
 class ClockTests: XCTestCase {
   
-  let clock = Clock()
+  let clock: Clock = MainClock()
   
   func testThatNowDoesNotCrash() {
     let _ = clock.now

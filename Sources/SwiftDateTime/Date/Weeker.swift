@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-class Weeker {
+public class Weeker {
 
   private let reference = (
     dayMonthYear: DayMonthYear(day: 1, month: 1, year: 2001),

@@ -20,15 +20,13 @@ extension DateTime: Comparable {
                      timeZoneOffset: Duration) -> (daysCorrection: Int, time: HoursMinutesSeconds) {
     let duration = time.durationFromMidnight - timeZoneOffset
     
-    let millisecondsPerDay: Int64 = 24 * 3600 * 1000
-    
-    let millisecondsFromMidnight = duration.milliseconds.positiveRemainder(modulo: millisecondsPerDay)
-    let daysCorrection = duration.milliseconds.divideWithoutRemainder(millisecondsPerDay)
+    let millisecondsFromMidnight = duration.positiveRemainder(divider: .day)
+    let daysCorrection = duration.divided(by: .day)
     
     return (
-      daysCorrection: Int(daysCorrection),
+      daysCorrection: daysCorrection,
       time: HoursMinutesSeconds(
-        durationFromMidnight: Duration(milliseconds: millisecondsFromMidnight)
+        durationFromMidnight: millisecondsFromMidnight
       )
     )
   }
@@ -43,22 +41,5 @@ extension DateTime: Comparable {
     }
     
     return this.timeZoneOffset < that.timeZoneOffset
-  }
-}
-
-
-private extension Int64 {
-  
-  func positiveRemainder(modulo divider: Int64) -> Int64 {
-    return self - (divideWithoutRemainder(divider) * divider)
-  }
-  
-  func divideWithoutRemainder(_ divider: Int64) -> Int64 {
-    if self >= 0 { return self / divider }
-    
-    let absQuotient = abs(self) / divider
-    let absRemainder = abs(self) % divider
-    
-    return absRemainder == 0 ? -absQuotient : -absQuotient - 1
   }
 }

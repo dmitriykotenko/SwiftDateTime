@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-class DatesManipulator {
+public class DatesManipulator {
   
   let parser = AbsoluteDayParser()
   let builder = AbsoluteDayBuilder()

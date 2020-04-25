@@ -4,10 +4,10 @@
 import Foundation
 
 
-class DateTimeManipulator {
+class LocalDateTimesManipulator {
   
   func localDateTime(_ dateTime: LocalDateTime,
-            plus duration: Duration) -> LocalDateTime {
+                     plus duration: Duration) -> LocalDateTime {
     let (days, time) = daysAndTime(dateTime.time, plus: duration)
     
     return LocalDateTime(
@@ -34,7 +34,7 @@ class DateTimeManipulator {
   
   private func daysAndTime(_ duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
     let secondsPerDay = 86400
-
+    
     let doubleDays = (Double(duration.seconds) / Double(secondsPerDay)).rounded(.down)
     let days = Int(doubleDays)
     

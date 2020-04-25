@@ -5,6 +5,8 @@ public struct Duration: Codable, Equatable, Hashable {
   
   static let zero = Duration(milliseconds: 0)
   
+  static let day = Duration(milliseconds: .millisecondsPerDay)
+
   var milliseconds: Int64
   
   var signum: Int {

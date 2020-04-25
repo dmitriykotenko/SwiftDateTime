@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-class DatesExpander {
+public class DatesExpander {
   
   let manipulator = DatesManipulator()
   let weeker = Weeker()

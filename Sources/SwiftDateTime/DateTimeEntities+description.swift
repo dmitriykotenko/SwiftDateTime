@@ -7,6 +7,14 @@ import Foundation
 extension DateTime: CustomStringConvertible {
   
   public var description: String {
+    return "\(date), \(time) (\(timeZoneOffset) from UTC)"
+  }
+}
+
+
+extension LocalDateTime: CustomStringConvertible {
+  
+  public var description: String {
     return "\(date), \(time)"
   }
 }
@@ -28,6 +36,19 @@ extension DayMonthYearPeriod: CustomStringConvertible {
 }
 
 
+extension HoursMinutesSeconds: CustomStringConvertible {
+  
+  public var description: String {
+    let millisecondsString = (milliseconds == 0) ? "" : String(format: ".%03d", milliseconds)
+    
+    return String(
+      format: "%02d:%02d:%02d%@",
+      hours, minutes, seconds, millisecondsString
+    )
+  }
+}
+
+
 extension Duration: CustomStringConvertible {
   
   public var description: String {
@@ -43,26 +64,5 @@ extension Duration: CustomStringConvertible {
     let thousandthsString = thousandths == 0 ? "" : String(format: ".%03d", thousandths)
     
     return signString + hoursString + minutesString + secondsString + thousandthsString
-  }
-}
-
-
-extension HoursMinutesSeconds: CustomStringConvertible {
-  
-  public var description: String {
-    let millisecondsString = (milliseconds == 0) ? "" : String(format: ".%03d", milliseconds)
-    
-    return String(
-      format: "%02d:%02d:%02d%@",
-      hours, minutes, seconds, millisecondsString
-    )
-  }
-}
-
-
-extension LocalDateTime: CustomStringConvertible {
-  
-  public var description: String {
-    return "\(date), \(time)"
   }
 }

@@ -12,6 +12,14 @@ extension CalendarDuration {
   }
   
   static func - (this: CalendarDuration, that: CalendarDuration) -> CalendarDuration {
-    return CalendarDuration(days: this.days - that.days)
+    return this + (-that)
+  }
+  
+  static func * (duration: CalendarDuration, multiplier: Int) -> CalendarDuration {
+    return CalendarDuration(days: duration.days * multiplier)
+  }
+  
+  static func / (duration: CalendarDuration, divider: Int) -> CalendarDuration {
+    return CalendarDuration(days: duration.days / divider)
   }
 }

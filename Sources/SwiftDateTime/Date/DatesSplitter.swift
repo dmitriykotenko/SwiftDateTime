@@ -1,7 +1,7 @@
 //  Copyright © 2018 Evgeniy Lubaev. All rights reserved.
 
 
-class DatesSplitter {
+public class DatesSplitter {
   
   let manipulator = DatesManipulator()
   let expander = DatesExpander()
