@@ -9,6 +9,8 @@ public class MainClock: Clock {
   private let calendar = Calendar(identifier: .gregorian)
   private let datesManipulator = DatesManipulator()
   
+  public init() {}
+  
   public var now: DateTime {
     let nowDate = Date()
     let timeZoneOffsetSeconds = calendar.timeZone.secondsFromGMT(for: nowDate)
