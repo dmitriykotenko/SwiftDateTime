@@ -4,14 +4,21 @@
 public extension Duration {
   
   var roundedToSeconds: Duration {
-    if thousandths < 500 {
-      return self - thousandths.thousandths
-    } else {
-      return self + (1000 - thousandths).thousandths
-    }
+    let remainder = milliseconds.positiveRemainder(modulo: 1000)
+    
+    let correction = (remainder < 500) ? -remainder : 1000 - remainder
+        
+    return Duration(
+      milliseconds: milliseconds + correction
+    )
   }
   
   var roundedUpToSeconds: Duration {
-    return self + (1000 - thousandths).thousandths
+    let remainder = milliseconds.positiveRemainder(modulo: 1000)
+    let correction = remainder == 0 ? 0 : 1000 - remainder
+    
+    return Duration(
+      milliseconds: milliseconds + correction
+    )
   }
 }
