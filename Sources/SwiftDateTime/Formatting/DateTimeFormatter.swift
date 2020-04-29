@@ -43,7 +43,7 @@ public class DateTimeFormatter {
     let timeString = dateAndTimeAndZone[1]
     let timeZoneOffsetString = dateAndTimeAndZone[2]
     
-    let date = dateFormatter.dayMonthYearFromString(dateString)
+    let date = dateFormatter.canonicalDayMonthYearFromString(dateString)
     let time = timeFormatter.timeFromString(timeString)
     let timeZoneOffset = timeZoneOffsetFormatter.timeZoneOffsetFromString(timeZoneOffsetString)
     
