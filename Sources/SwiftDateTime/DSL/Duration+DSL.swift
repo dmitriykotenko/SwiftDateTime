@@ -18,4 +18,16 @@ public extension Int {
   var thousandths: Duration {
     return Duration(negative: signum() < 0, thousandths: abs(self))
   }
+  
+  var milliseconds: Duration {
+    return Duration(milliseconds: self)
+  }
+}
+
+
+public extension Int64 {
+  
+  var milliseconds: Duration {
+    return Duration(milliseconds: self)
+  }
 }
