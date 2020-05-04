@@ -6,11 +6,21 @@ import Foundation
 
 public class MainClock: Clock {
   
-  private let calendar = Calendar(identifier: .gregorian)
+  private let calendar: Calendar
   private let datesManipulator = DatesManipulator()
+
+  public init(timeZone: TimeZone? = nil) {
+    var newCalendar = Calendar(identifier: .gregorian)
+    timeZone.map { newCalendar.timeZone = $0 }
+    self.calendar = newCalendar
+  }
   
-  public init() {}
-  
+  public convenience init(timeZoneOffset: Duration?) {
+    self.init(timeZone:
+      timeZoneOffset.flatMap { TimeZone(secondsFromGMT: $0.seconds) }
+    )
+  }
+
   public var now: DateTime {
     let nowDate = Date()
     let timeZoneOffsetSeconds = calendar.timeZone.secondsFromGMT(for: nowDate)
