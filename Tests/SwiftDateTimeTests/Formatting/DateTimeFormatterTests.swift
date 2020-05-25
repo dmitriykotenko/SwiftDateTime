@@ -36,8 +36,8 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
       
       guard a < b else { continue }
       
-      let formattedA = formatter.stringFromDateTime(a)
-      let formattedB = formatter.stringFromDateTime(b)
+      let formattedA = formatter.string(dateTime: a)
+      let formattedB = formatter.string(dateTime: b)
       
       guard formattedA < formattedB else {
         XCTFail(
@@ -215,26 +215,54 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
   func testParsingOfTimeZoneOffsetWithOneDigitMinutes() {
     checkParsingOfInvalidString("1998-07-26 04:42:10.3 +00:3")
   }
+  
+  func testNestedDateFormatter() {
+    let nestedDateFormatter = DateFormatter()
+    nestedDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXX"
+    
+    let formatter = DateTimeFormatter(nestedDateFormatter)
+    
+    let string = "2015-05-25T09:59:04+06:00"
+    let expectedDateTime = 25.may(2015).time(9, 59, 4).zone(6.hours)
+
+    switch formatter.dateTime(string: string) {
+    case .failure(let error):
+      XCTFail("Error when parsing valid date time string \"\(string)\": \(error.localizedDescription)")
+    case .success(let actualDateTime) where actualDateTime != expectedDateTime:
+      XCTFail("\"\(string)\" was parsed as \(actualDateTime), but expected \(expectedDateTime)")
+    case .success(let dateTime):
+      let parsedThenFormattedString = formatter.string(dateTime: dateTime)
+      
+      if parsedThenFormattedString != string {
+        XCTFail("\"\(string)\" when parsed and then formatted again become \(parsedThenFormattedString)")
+      }
+    }
+  }
 }
 
 
 private extension DateTimeFormatterTests {
   
   func formatAndThenParse(_ dateTime: DateTime) -> ParseResult<DateTime> {
-    return formatter.canonicalDateTimeFromString(formatter.stringFromDateTime(dateTime))
+    return formatter.dateTime(string: formatter.string(dateTime: dateTime))
   }
   
+  func parseAndThenFormat(_ string: String) -> ParseResult<String> {
+    return formatter.dateTime(string: string)
+      .map { formatter.string(dateTime: $0) }
+  }
+
   func checkThat(_ dateTime: DateTime,
                  formattedAs expectedResult: String) {
     XCTAssertEqual(
-      formatter.stringFromDateTime(dateTime),
+      formatter.string(dateTime: dateTime),
       expectedResult
     )
   }
   
   func checkThat(_ string: String,
                  parsedTo expectedDateTime: DateTime) {
-    switch formatter.canonicalDateTimeFromString(string) {
+    switch formatter.dateTime(string: string) {
     case .failure(let error):
       XCTFail("Error when parsing valid date time string \"\(string)\": \(error.localizedDescription)")
     case .success(let actualDateTime) where actualDateTime != expectedDateTime:
@@ -245,7 +273,7 @@ private extension DateTimeFormatterTests {
   }
   
   func checkParsingOfInvalidString(_ string: String) {
-    switch formatter.canonicalDateTimeFromString(string) {
+    switch formatter.dateTime(string: string) {
     case .failure:
       break
     case .success(let actualDateTime):

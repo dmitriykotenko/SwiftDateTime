@@ -9,14 +9,28 @@ public class DateTimeFormatter {
   private let dateFormatter = DayMonthYearFormatter()
   private let timeFormatter = HoursMinutesSecondsFormatter()
   private let timeZoneOffsetFormatter = TimeZoneOffsetFormatter()
-
+  
   public var nestedFormatter: DateFormatter?
   
   public init(_ nestedFormatter: DateFormatter? = nil) {
     self.nestedFormatter = nestedFormatter
   }
-
-  public func stringFromDateTime(_ dateTime: DateTime) -> String {
+  
+  public func string(dateTime: DateTime) -> String {
+    let dateFormatter = nestedFormatter
+      .flatMap { $0.copy() as? DateFormatter }
+    
+    switch dateFormatter {
+    case nil:
+      return canonicalStringFromDateTime(dateTime)
+    case let formatter?:
+      formatter.timeZone = TimeZone(secondsFromGMT: dateTime.timeZoneOffset.seconds)
+      
+      return stringFromDateTime(dateTime, formatter: formatter)
+    }
+  }
+  
+  private func canonicalStringFromDateTime(_ dateTime: DateTime) -> String {
     
     let dateString = dateFormatter.canonicalStringFromDayMonthYear(dateTime.date)
     let timeString = timeFormatter.stringFromTime(dateTime.time)
@@ -25,16 +39,21 @@ public class DateTimeFormatter {
     return "\(dateString) \(timeString) \(timeZoneString)"
   }
   
+  private func stringFromDateTime(_ dateTime: DateTime,
+                                  formatter: DateFormatter) -> String {
+    return formatter.string(from: dateTime.moment)
+  }
+  
   public func dateTime(string: String) -> ParseResult<DateTime> {
     switch nestedFormatter {
     case nil:
-      return canonicalDateTimeFromString(string)
-    default:
-      return customizableDateTimeFromString(string)
+      return dateTimeFromCanonicalString(string)
+    case let formatter?:
+      return dateTimeFromString(string, formatter: formatter)
     }
   }
-
-  public func canonicalDateTimeFromString(_ string: String) -> ParseResult<DateTime> {
+  
+  private func dateTimeFromCanonicalString(_ string: String) -> ParseResult<DateTime> {
     let dateAndTimeAndZone = string.components(separatedBy: " ")
     
     guard dateAndTimeAndZone.count == 3 else { return .failure(.invalidDateTime(string)) }
@@ -51,14 +70,15 @@ public class DateTimeFormatter {
       date.flatMap { d in
       time.flatMap { t in
       timeZoneOffset.flatMap { o in
-        .success(DateTime(date: d, time: t, timeZoneOffset: o))
+      .success(DateTime(date: d, time: t, timeZoneOffset: o))
       }}}
     
     return result
   }
-
-  public func customizableDateTimeFromString(_ string: String) -> ParseResult<DateTime> {
-    let moment = nestedFormatter?.date(from: string)
+  
+  private func dateTimeFromString(_ string: String,
+                                  formatter: DateFormatter) -> ParseResult<DateTime> {
+    let moment = formatter.date(from: string)
     let timeZoneOffset = timeZoneOffsetFormatter.timeZoneOffsetFromDateString(string)
     let timeZone = timeZoneOffset.map { TimeZone(secondsFromGMT: $0.seconds) }
     
