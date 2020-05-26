@@ -9,15 +9,19 @@ public class MainClock: Clock {
   private let calendar: Calendar
   private let datesManipulator = DatesManipulator()
 
-  public init(timeZone: TimeZone? = nil) {
+  public init() {
+    self.calendar = Calendar(identifier: .gregorian)
+  }
+
+  public init(timeZone: TimeZone) {
     var newCalendar = Calendar(identifier: .gregorian)
-    timeZone.map { newCalendar.timeZone = $0 }
+    newCalendar.timeZone = timeZone
     self.calendar = newCalendar
   }
   
-  public convenience init(timeZoneOffset: Duration?) {
+  public convenience init(timeZoneOffset: Duration) {
     self.init(timeZone:
-      timeZoneOffset.flatMap { TimeZone(secondsFromGMT: $0.seconds) }
+      TimeZone(secondsFromGMT: timeZoneOffset.seconds)!
     )
   }
 
