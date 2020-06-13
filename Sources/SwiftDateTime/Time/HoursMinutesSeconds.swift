@@ -36,6 +36,8 @@ public struct HoursMinutesSeconds: Codable, Equatable, Hashable {
   }
   
   public static let zero = HoursMinutesSeconds(hours: 0, minutes: 0, seconds: 0)
+  public static let midnight = HoursMinutesSeconds(hours: 0, minutes: 0, seconds: 0)
+  public static let noon = HoursMinutesSeconds(hours: 12, minutes: 0, seconds: 0)
 }
 
 
