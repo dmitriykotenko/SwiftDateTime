@@ -3,22 +3,22 @@
 
 public extension Duration {
   
-  var roundedToSeconds: Duration {
-    let remainder = milliseconds.positiveRemainder(modulo: 1000)
-    
-    let correction = (remainder < 500) ? -remainder : 1000 - remainder
-        
-    return Duration(
-      milliseconds: milliseconds + correction
-    )
+  func rounded(to interval: Duration) -> Duration {
+    let remainder = positiveRemainder(divider: interval)
+
+    return
+      (remainder * 2 < interval) ?
+        (self - remainder) :
+        (self + interval - remainder)
   }
   
-  var roundedUpToSeconds: Duration {
-    let remainder = milliseconds.positiveRemainder(modulo: 1000)
-    let correction = remainder == 0 ? 0 : 1000 - remainder
+  func rounded(upTo interval: Duration) -> Duration {
+    let remainder = positiveRemainder(divider: interval)
     
-    return Duration(
-      milliseconds: milliseconds + correction
-    )
+    return (remainder == .zero) ? self : (self - remainder) + interval
+  }
+
+  func rounded(downTo interval: Duration) -> Duration {
+    return self - positiveRemainder(divider: interval)
   }
 }

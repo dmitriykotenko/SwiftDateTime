@@ -25,6 +25,18 @@ public extension Duration {
     return Duration(milliseconds: duration.milliseconds / Int64(divider))
   }
   
+  static func * (duration: Duration, multiplier: Double) -> Duration {
+    let newMilliseconds = Int64(Double(duration.milliseconds) * multiplier)
+    
+    return Duration(milliseconds: newMilliseconds)
+  }
+  
+  static func / (duration: Duration, multiplier: Double) -> Duration {
+    let newMilliseconds = Int64(Double(duration.milliseconds) / multiplier)
+    
+    return Duration(milliseconds: newMilliseconds)
+  }
+
   func divided(by that: Duration) -> Int {
     return Int(
       milliseconds.divideWithoutRemainder(that.milliseconds)
@@ -36,4 +48,9 @@ public extension Duration {
       milliseconds.positiveRemainder(modulo: divider.milliseconds)
     )
   }
+}
+
+
+public func abs(_ duration: Duration) -> Duration {
+  return Duration(milliseconds: abs(duration.milliseconds))
 }
