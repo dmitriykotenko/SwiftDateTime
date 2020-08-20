@@ -10,6 +10,10 @@ public struct CalendarDuration: Codable, Equatable, Hashable {
   public var signum: Int {
     return Int(days.signum())
   }
+  
+  public init(days: Int) {
+    self.days = days
+  }
 }
 
 
