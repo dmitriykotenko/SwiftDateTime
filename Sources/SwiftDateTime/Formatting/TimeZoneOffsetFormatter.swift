@@ -42,39 +42,68 @@ public class TimeZoneOffsetFormatter {
 
   public func timeZoneOffsetFromString(_ string: String) -> ParseResult<Duration> {
     guard string.first?.lowercased() != "z" else { return .success(.zero) }
-    
-    guard string.count == expectedStringLength else { return .failure(.invalidTimeZoneOffset(string)) }
-    
-    guard
-      let sign = string.first,
-      sign == "+" || sign == "-"
-    else {
-        return .failure(.invalidTimeZoneOffset(string))
-    }
-    
-    let isNegative = (sign != "+")
-    
-    let hoursMinutes = String(string.dropFirst()).components(separatedBy: ":")
-    
-    guard
-      hoursMinutes.count == 2,
-      let absoluteHours = Int(hoursMinutes[0]),
-      let minutes = Int(hoursMinutes[1]),
-      isValid(hours: absoluteHours, minutes: minutes)
-    else {
-        return .failure(.invalidTimeZoneOffset(string))
-    }
-    
-    let absoluteSeconds = absoluteHours * 3600 + minutes * 60
-    
-    return .success(
-      Duration(
-        negative: isNegative,
-        seconds: absoluteSeconds
-      )
-    )
+
+    return
+      isNevative(string).flatMap { isNegative in
+        hoursMinutes(from: string).map { hoursMinutesSeconds in
+          Duration(
+            negative: isNegative,
+            seconds: hoursMinutesSeconds.hours * 3600 + hoursMinutesSeconds.minutes * 60
+          )
+        }
+      }
   }
-  
+
+  private func isNevative(_ string: String) -> ParseResult<Bool> {
+    switch string.first {
+    case "+":
+      return .success(false)
+    case "-":
+      return .success(true)
+    default:
+      return .failure(.invalidTimeZoneOffset(string))
+    }
+  }
+
+  private func hoursMinutes(from string: String) -> ParseResult<HoursMinutesSeconds> {
+    return components(from: string).flatMap {
+      let maybeHours = ($0.first).flatMap { Int($0) }
+      let maybeMinutes = ($0.dropFirst().first).flatMap { Int($0) }
+
+      switch ($0.count, maybeHours, maybeMinutes) {
+      case (2, let hours?, let minutes?) where isValid(hours: hours, minutes: minutes):
+        return .success(
+          HoursMinutesSeconds(
+            hours: hours,
+            minutes: minutes,
+            seconds: 0
+          )
+        )
+      default:
+        return .failure(.invalidTimeZoneOffset(string))
+      }
+    }
+  }
+
+  private func components(from string: String) -> ParseResult<[String]> {
+    let stringWithoutSign = String(string.dropFirst())
+
+    switch string.count {
+    case 5: // "+0300"
+      return .success(
+        Array(stringWithoutSign)
+          .chunks(length: 2)
+          .map { String($0) }
+      )
+    case 6: // "+03:00"
+      return .success(
+        Array(stringWithoutSign.components(separatedBy: ":"))
+      )
+    default:
+      return .failure(.invalidTimeZoneOffset(string))
+    }
+  }
+
   private func isValid(hours: Int,
                        minutes: Int) -> Bool {
     switch (hours, minutes) {
@@ -83,4 +112,3 @@ public class TimeZoneOffsetFormatter {
     }
   }
 }
-

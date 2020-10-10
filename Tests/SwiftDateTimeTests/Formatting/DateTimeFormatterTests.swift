@@ -144,6 +144,20 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
     )
   }
 
+  func testParsingOfPositiveTimeZoneWithoutColon() {
+    checkThat(
+      "-890908-01-01 11:00:00.000 +0300",
+      parsedTo: 1.january(-890908).time(11, 00).zone(hours: +3)
+    )
+  }
+
+  func testParsingOfNegativeTimeZoneWithoutColon() {
+    checkThat(
+      "-890908-01-01 11:00:00.000 -0500",
+      parsedTo: 1.january(-890908).time(11, 00).zone(hours: -5)
+    )
+  }
+
   func testParsingOfEmptyString() {
     checkParsingOfInvalidString("")
   }
@@ -235,6 +249,59 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
       
       if parsedThenFormattedString != string {
         XCTFail("\"\(string)\" when parsed and then formatted again become \(parsedThenFormattedString)")
+      }
+    }
+  }
+
+  func testInitWithFormat1() {
+    check(
+      dateFormat: "yyyy-MM-dd'T'HH:mm:ssXXX",
+      dateTimeString: "2015-05-25T09:59:04+06:00",
+      expectedDateTime: 25.may(2015).time(9, 59, 4).zone(6.hours)
+    )
+  }
+
+  func testInitWithFormat2() {
+    check(
+      dateFormat: "dd.M.yyyy HH:mm:ss.SSSXXX",
+      dateTimeString: "25.5.2015 09:59:04.321+06:00",
+      expectedDateTime: 25.may(2015).time(9, 59, 4, 321).zone(6.hours)
+    )
+  }
+
+  func testInitWithFormat3() {
+    check(
+      dateFormat: "HH:mm, d.M.yyyy, XXX",
+      dateTimeString: "09:59, 1.5.2015, +06:00",
+      expectedDateTime: 1.may(2015).time(9, 59).zone(6.hours)
+    )
+  }
+
+  @discardableResult
+  private func check(dateFormat: String,
+                     dateTimeString: String,
+                     expectedDateTime: DateTime) -> Bool {
+    let formatter = DateTimeFormatter(dateFormat)
+
+    switch formatter.dateTime(string: dateTimeString) {
+    case .failure(let error):
+      XCTFail("Error when parsing valid date time string \"\(dateTimeString)\": \(error.localizedDescription)")
+      return false
+    case .success(let actualDateTime) where actualDateTime != expectedDateTime:
+      XCTFail(
+        "\"\(dateTimeString)\" was parsed as \(actualDateTime), but expected \(expectedDateTime)"
+      )
+      return false
+    case .success(let dateTime):
+      let parsedThenFormattedString = formatter.string(dateTime: dateTime)
+
+      if parsedThenFormattedString != dateTimeString {
+        XCTFail(
+          "\"\(dateTimeString)\" when parsed and then formatted again become \(parsedThenFormattedString)"
+        )
+        return false
+      } else {
+        return true
       }
     }
   }
