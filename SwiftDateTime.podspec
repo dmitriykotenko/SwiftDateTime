@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftDateTime'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'Library to work with dates and times'
   s.homepage         = 'https://github.com/dmitriykotenko/SwiftDateTime'
   s.license          = { :type => 'MIT', :file => 'License' }
