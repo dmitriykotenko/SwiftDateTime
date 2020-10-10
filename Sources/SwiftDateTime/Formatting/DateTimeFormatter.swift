@@ -11,11 +11,18 @@ public class DateTimeFormatter {
   private let timeZoneOffsetFormatter = TimeZoneOffsetFormatter()
   
   public var nestedFormatter: DateFormatter?
-  
+
   public init(_ nestedFormatter: DateFormatter? = nil) {
     self.nestedFormatter = nestedFormatter
   }
-  
+
+  public convenience init(_ dateFormat: String) {
+    let nestedFormatter = DateFormatter()
+    nestedFormatter.dateFormat = dateFormat
+
+    self.init(nestedFormatter)
+  }
+
   public func string(dateTime: DateTime) -> String {
     let dateFormatter = nestedFormatter
       .flatMap { $0.copy() as? DateFormatter }
