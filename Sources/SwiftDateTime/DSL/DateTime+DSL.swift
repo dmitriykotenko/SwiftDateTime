@@ -8,7 +8,7 @@ public extension DateTime {
   var moment: Date {
     let dateComponents = DateComponents(
       calendar: Calendar(identifier: .gregorian),
-      timeZone: TimeZone(secondsFromGMT: timeZoneOffset.seconds),
+      timeZone: TimeZone(secondsFromGMT: Int(timeZoneOffset.milliseconds / 1000)),
       year: date.year,
       month: date.month,
       day: date.day,
@@ -27,6 +27,13 @@ public extension DateTime {
 
   var weekday: Weekday {
     return local.weekday
+  }
+
+  func withTimeZoneOffsetChanged(to newOffset: Duration) -> DateTime {
+    return DateTimesManipulator().dateTime(
+      self,
+      withTimeZoneOffsetChangedTo: newOffset
+    )
   }
 
   static func - (this: DateTime, that: DateTime) -> Duration {

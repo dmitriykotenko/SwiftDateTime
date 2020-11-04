@@ -13,7 +13,7 @@ public class DateTimesManipulator {
       timeZoneOffset: dateTime.timeZoneOffset
     )
   }
-  
+
   public func dateTime(_ dateTime: DateTime,
                        minus duration: Duration) -> DateTime {
     return DateTime(
@@ -39,7 +39,17 @@ public class DateTimesManipulator {
       plus: -duration
     )
   }
-  
+
+  func dateTime(_ dateTime: DateTime,
+                withTimeZoneOffsetChangedTo timeZoneOffset: Duration) -> DateTime {
+    let timeZoneDifference = timeZoneOffset - dateTime.timeZoneOffset
+
+    return DateTime(
+      localDateTime: dateTime.local + timeZoneDifference,
+      timeZoneOffset: timeZoneOffset
+    )
+  }
+
   private func daysAndTime(_ time: HoursMinutesSeconds,
                            plus duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
     return daysAndTime(time.durationFromMidnight + duration)
@@ -51,7 +61,7 @@ public class DateTimesManipulator {
     let milliseconds = duration.milliseconds
     let doubleDays = (Double(milliseconds) / Double(millisecondsPerDay)).rounded(.down)
     let days = Int(doubleDays)
-    
+
     let remainingMilliseconds = Int(milliseconds) - days * millisecondsPerDay
 
     return (
