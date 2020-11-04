@@ -44,16 +44,16 @@ public class DateTimesManipulator {
                            plus duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
     return daysAndTime(time.durationFromMidnight + duration)
   }
-  
+
   private func daysAndTime(_ duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
     let millisecondsPerDay = 86400 * 1000
-    
+
     let milliseconds = duration.milliseconds
     let doubleDays = (Double(milliseconds) / Double(millisecondsPerDay)).rounded(.down)
     let days = Int(doubleDays)
     
     let remainingMilliseconds = Int(milliseconds) - days * millisecondsPerDay
-    
+
     return (
       days: days,
       time: HoursMinutesSeconds(

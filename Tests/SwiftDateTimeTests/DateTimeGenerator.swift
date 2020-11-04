@@ -10,7 +10,10 @@ protocol DateTimeGenerator {
   func randomDateTime(date: DayMonthYear?,
                       time: HoursMinutesSeconds?,
                       timeZoneOffset: Duration?) -> DateTime
-  
+
+  func randomLocalDateTime(date: DayMonthYear?,
+                           time: HoursMinutesSeconds?) -> LocalDateTime
+
   func randomDayMonthYear() -> DayMonthYear
   
   func randomHoursMinutesSeconds(hours: Int?,
@@ -33,7 +36,15 @@ extension DateTimeGenerator {
       timeZoneOffset: timeZoneOffset ?? randomTimeZoneOffset()
     )
   }
-  
+
+  func randomLocalDateTime(date: DayMonthYear? = nil,
+                      time: HoursMinutesSeconds? = nil) -> LocalDateTime {
+    return LocalDateTime(
+      date: date ?? randomDayMonthYear(),
+      time: time ?? randomHoursMinutesSeconds()
+    )
+  }
+
   func randomDayMonthYear() -> DayMonthYear {
     let year = 1980 + arc4random_uniform(50)
     let month = 1 + arc4random_uniform(12)

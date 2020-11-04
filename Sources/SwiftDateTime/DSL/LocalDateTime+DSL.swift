@@ -15,7 +15,7 @@ public extension LocalDateTime {
   }
   
   static func + (dateTime: LocalDateTime, duration: Duration) -> LocalDateTime {
-    return LocalDateTimesManipulator()
+    return DateTimesManipulator()
       .localDateTime(dateTime, plus: duration)
   }
   
