@@ -20,6 +20,9 @@ public class DateTimeFormatter {
     let nestedFormatter = DateFormatter()
     nestedFormatter.dateFormat = dateFormat
 
+    // Formatter's time zone matters when parsing date-times without time zone. E. g.: "1998-07-26 04:42:10"
+    nestedFormatter.timeZone = .utc
+
     self.init(nestedFormatter)
   }
 
@@ -86,9 +89,14 @@ public class DateTimeFormatter {
   private func dateTimeFromString(_ string: String,
                                   formatter: DateFormatter) -> ParseResult<DateTime> {
     let moment = formatter.date(from: string)
-    let timeZoneOffset = timeZoneOffsetFormatter.timeZoneOffsetFromDateString(string)
+
+    let timeZoneOffset = timeZoneOffsetFormatter.timeZoneOffsetFromDateString(
+      string,
+      dateFormat: formatter.dateFormat
+    )
+
     let timeZone = timeZoneOffset.map { TimeZone(secondsFromGMT: $0.seconds) }
-    
+
     switch (moment, timeZone) {
     case (let date?, .success(let zone?)):
       return .success(DateTime(moment: date, timeZone: zone))

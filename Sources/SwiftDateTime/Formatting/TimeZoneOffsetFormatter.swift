@@ -24,14 +24,19 @@ public class TimeZoneOffsetFormatter {
     return "\(sign)\(hoursString):\(minutesString)"
   }
 
-  public func timeZoneOffsetFromDateString(_ dateString: String) -> ParseResult<Duration> {
+  public func timeZoneOffsetFromDateString(_ dateString: String,
+                                           dateFormat: String) -> ParseResult<Duration> {
     return
-      timeZoneComponent(dateString: dateString)
+      timeZoneComponent(dateString: dateString, dateFormat: dateFormat)
       .map { timeZoneOffsetFromString($0) }
       ?? .success(.zero)
   }
   
-  private func timeZoneComponent(dateString: String) -> String? {
+  private func timeZoneComponent(dateString: String,
+                                 dateFormat: String) -> String? {
+    /// Do not try to parse time zone if it is not mentioned in the format.
+    guard dateFormat.isTimeZoneMentioned else { return nil }
+
     let timeZoneIndex = dateString.lastIndex(of: "Z")
       ?? dateString.lastIndex(of: "z")
       ?? dateString.lastIndex(of: "+")
@@ -110,5 +115,18 @@ public class TimeZoneOffsetFormatter {
     case (0...23, 0...59): return true
     default: return false
     }
+  }
+}
+
+
+private extension String {
+
+  /// Check if the date format mensions time zone.
+  var isTimeZoneMentioned: Bool {
+    // Possible time zone symbols
+    // (according to https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax)
+    let timeZoneCharacters = CharacterSet(charactersIn: "zZOvVxX")
+
+    return !CharacterSet(charactersIn: self).intersection(timeZoneCharacters).isEmpty
   }
 }

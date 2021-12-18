@@ -229,7 +229,15 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
   func testParsingOfTimeZoneOffsetWithOneDigitMinutes() {
     checkParsingOfInvalidString("1998-07-26 04:42:10.3 +00:3")
   }
-  
+
+  func testParsingOfDateTimeWithoutTimeZoneOffset() {
+    checkThat(
+      "1998-07-26 04:42:10.3",
+      parsedTo: 26.july(1998).time(04, 42, 10, 300).utc(),
+      using: DateTimeFormatter("yyyy-MM-dd HH:mm:ss.S")
+    )
+  }
+
   func testNestedDateFormatter() {
     let nestedDateFormatter = DateFormatter()
     nestedDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXX"
@@ -328,8 +336,9 @@ private extension DateTimeFormatterTests {
   }
   
   func checkThat(_ string: String,
-                 parsedTo expectedDateTime: DateTime) {
-    switch formatter.dateTime(string: string) {
+                 parsedTo expectedDateTime: DateTime,
+                 using formatter: DateTimeFormatter? = nil) {
+    switch (formatter ?? self.formatter).dateTime(string: string) {
     case .failure(let error):
       XCTFail("Error when parsing valid date time string \"\(string)\": \(error.localizedDescription)")
     case .success(let actualDateTime) where actualDateTime != expectedDateTime:
