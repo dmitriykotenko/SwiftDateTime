@@ -39,7 +39,9 @@ class DateTimeMomentTests: XCTestCase, DateTimeGenerator {
       let momentDifference = momentA.timeIntervalSince1970 - momentB.timeIntervalSince1970
       let timeZoneOffsetDifference = timeZoneOffsetA - timeZoneOffsetB
 
-      if Int(momentDifference * 1000) != -Int(timeZoneOffsetDifference.milliseconds) {
+      let momentDifferenceInMilliseconds = (momentDifference * 1000).rounded(.toNearestOrAwayFromZero)
+
+      if Int(momentDifferenceInMilliseconds) != -Int(timeZoneOffsetDifference.milliseconds) {
         XCTFail(
           "At least one of the moments is wrong:\n" +
           "dateTimeA = \(dateTimeA)\n" +

@@ -52,4 +52,8 @@ public class MainClock: Clock {
       timeZoneOffset: Duration(seconds: timeZoneOffsetSeconds)
     )
   }
+
+  public var timeZone: TimeZone {
+    calendar.timeZone
+  }
 }

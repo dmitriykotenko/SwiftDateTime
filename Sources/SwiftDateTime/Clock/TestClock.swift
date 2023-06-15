@@ -7,6 +7,10 @@ import Foundation
 public class TestClock: Clock {
   
   public private(set) var now: DateTime
+
+  public var timeZone: TimeZone {
+    .init(secondsFromGMT: now.timeZoneOffset.seconds)!
+  }
   
   private let datesManipulator = DatesManipulator()
   private let dateTimesManipulator = DateTimesManipulator()

@@ -7,4 +7,5 @@ import Foundation
 public protocol Clock {
   
   var now: DateTime { get }
+  var timeZone: TimeZone { get }
 }
