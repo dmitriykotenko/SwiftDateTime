@@ -32,7 +32,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
 
       let newDateTime = manipulator.dateTime(
         dateTime,
-        withTimeZoneOffsetChangedTo: timeZoneOffset
+        convertedToTimeZoneOffset: timeZoneOffset
       )
 
       if newDateTime.moment != dateTime.moment {
@@ -51,8 +51,8 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
       let timeZoneOffset = randomTimeZoneOffset()
 
       let sameDateTime = manipulator.dateTime(
-        manipulator.dateTime(dateTime, withTimeZoneOffsetChangedTo: timeZoneOffset),
-        withTimeZoneOffsetChangedTo: dateTime.timeZoneOffset
+        manipulator.dateTime(dateTime, convertedToTimeZoneOffset: timeZoneOffset),
+        convertedToTimeZoneOffset: dateTime.timeZoneOffset
       )
       
       if sameDateTime != dateTime {
@@ -72,7 +72,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
 
       let newDateTime = manipulator.dateTime(
         dateTime,
-        withTimeZoneOffsetChangedTo: timeZoneOffset
+        convertedToTimeZoneOffset: timeZoneOffset
       )
 
       if newDateTime.timeZoneOffset != timeZoneOffset {
@@ -87,7 +87,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
                      is expectedDateTime: DateTime) {
     let actualDateTime = manipulator.dateTime(
       dateTime,
-      withTimeZoneOffsetChangedTo: timeZoneOffset
+      convertedToTimeZoneOffset: timeZoneOffset
     )
     
     XCTAssertEqual(

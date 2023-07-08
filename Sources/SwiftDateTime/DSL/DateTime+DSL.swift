@@ -29,10 +29,10 @@ public extension DateTime {
     return local.weekday
   }
 
-  func withTimeZoneOffsetChanged(to newOffset: Duration) -> DateTime {
+  func converted(toTimeZoneOffset newOffset: Duration) -> DateTime {
     return DateTimesManipulator().dateTime(
       self,
-      withTimeZoneOffsetChangedTo: newOffset
+      convertedToTimeZoneOffset: newOffset
     )
   }
 

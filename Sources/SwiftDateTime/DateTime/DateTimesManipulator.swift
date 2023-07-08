@@ -41,7 +41,7 @@ public class DateTimesManipulator {
   }
 
   func dateTime(_ dateTime: DateTime,
-                withTimeZoneOffsetChangedTo timeZoneOffset: Duration) -> DateTime {
+                convertedToTimeZoneOffset timeZoneOffset: Duration) -> DateTime {
     let timeZoneDifference = timeZoneOffset - dateTime.timeZoneOffset
 
     return DateTime(
