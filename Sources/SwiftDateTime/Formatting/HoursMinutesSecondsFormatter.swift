@@ -21,15 +21,15 @@ public class HoursMinutesSecondsFormatter {
   
   public func timeFromString(_ string: String) -> ParseResult<HoursMinutesSeconds> {
     guard string.count == expectedStringLength else { return .failure(.invalidHoursMinutesSeconds(string)) }
-    
+
     let hoursMinutesSeconds = string.components(separatedBy: ":")
     
     guard hoursMinutesSeconds.count == 3 else { return .failure(.invalidHoursMinutesSeconds(string)) }
-    
+
     let secondsMilliseconds = hoursMinutesSeconds[2].components(separatedBy: ".")
     
     guard secondsMilliseconds.count == 2 else { return .failure(.invalidHoursMinutesSeconds(string)) }
-    
+
     guard
       let hours = Int(hoursMinutesSeconds[0]),
       let minutes = Int(hoursMinutesSeconds[1]),

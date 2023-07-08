@@ -26,11 +26,11 @@ public class Weeker {
   }
   
   public func weekstart(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
-    return last(.monday, before: dayMonthYear)
+    last(.monday, before: dayMonthYear)
   }
   
   public func weekend(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
-    return first(.sunday, after: dayMonthYear)
+    first(.sunday, after: dayMonthYear)
   }
 
   private func last(_ desiredWeekday: Weekday,

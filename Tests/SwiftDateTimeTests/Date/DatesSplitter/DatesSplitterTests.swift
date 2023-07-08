@@ -221,10 +221,10 @@ class DatesSplitterTests: XCTestCase, DateTimeGenerator {
 
   @discardableResult
   private func checkThatLast(_ count: Int,
-                         _ unit: PeriodUnit,
-                         from singleDate: DayMonthYear,
-                         is expectedResult: [DayMonthYearPeriod]) -> Bool {
-    return checkThatLast(
+                             _ unit: PeriodUnit,
+                             from singleDate: DayMonthYear,
+                             is expectedResult: [DayMonthYearPeriod]) -> Bool {
+    checkThatLast(
       count,
       unit,
       from: DayMonthYearPeriod(

@@ -135,10 +135,10 @@ class DatesManipulatorTranslationTests: XCTestCase, DateTimeGenerator {
   }
 
   private func isInvalidDate(_ date: DayMonthYear) -> Bool {
-    return date.month <= 0
-      || date.month > 12
-      || date.day <= 0
-      || date.day > monthLength(date)
+    date.month <= 0
+    || date.month > 12
+    || date.day <= 0
+    || date.day > monthLength(date)
   }
   
   private func monthLength(_ date: DayMonthYear) -> Int {
@@ -151,10 +151,9 @@ class DatesManipulatorTranslationTests: XCTestCase, DateTimeGenerator {
   }
   
   func isLeapYear(_ year: Int) -> Bool {
-    return
-      (year % 400 == 0) ? true :
-        (year % 100 == 0) ? false :
-        (year % 4 == 0) ? true :
+    (year % 400 == 0) ? true :
+    (year % 100 == 0) ? false :
+    (year % 4 == 0) ? true :
     false
   }
   

@@ -8,16 +8,16 @@ public extension LocalDateTime {
 
   /// - attention: If duration is not divider of Duration.day, the operation is not idempotent.
   func rounded(to duration: Duration) -> LocalDateTime {
-    return copy(unsafeTime: time.unsafelyRounded(to: duration))
+    copy(unsafeTime: time.unsafelyRounded(to: duration))
   }
 
   /// - attention: If duration is not divider of Duration.day, the operation is not idempotent.
   func rounded(upTo duration: Duration) -> LocalDateTime {
-    return copy(unsafeTime: time.unsafelyRounded(upTo: duration))
+    copy(unsafeTime: time.unsafelyRounded(upTo: duration))
   }
 
   func rounded(downTo duration: Duration) -> LocalDateTime {
-    return copy(
+    copy(
       time: time.rounded(downTo: duration)
     )
   }

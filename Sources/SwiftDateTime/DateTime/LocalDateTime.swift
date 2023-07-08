@@ -11,7 +11,7 @@ public struct LocalDateTime: Codable, Equatable, Hashable {
   
   public func copy(date: DayMonthYear? = nil,
                    time: HoursMinutesSeconds? = nil) -> LocalDateTime {
-    return LocalDateTime(
+    LocalDateTime(
       date: date ?? self.date,
       time: time ?? self.time
     )

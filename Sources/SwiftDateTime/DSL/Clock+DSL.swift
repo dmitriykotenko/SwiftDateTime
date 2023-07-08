@@ -4,14 +4,14 @@
 public extension Clock {
 
   var today: DayMonthYear {
-    return now.date
+    now.date
   }
 
   var tomorrow: DayMonthYear {
-    return today.nextDay
+    today.nextDay
   }
 
   var yesterday: DayMonthYear {
-    return today.previousDay
+    today.previousDay
   }
 }

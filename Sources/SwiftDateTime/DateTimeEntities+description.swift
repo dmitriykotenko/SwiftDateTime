@@ -7,7 +7,7 @@ import Foundation
 extension DateTime: CustomStringConvertible {
   
   public var description: String {
-    return "\(date), \(time) (\(timeZoneOffset) from UTC)"
+    "\(date), \(time) (\(timeZoneOffset) from UTC)"
   }
 }
 
@@ -15,7 +15,7 @@ extension DateTime: CustomStringConvertible {
 extension LocalDateTime: CustomStringConvertible {
   
   public var description: String {
-    return "\(date), \(time)"
+    "\(date), \(time)"
   }
 }
 
@@ -23,7 +23,7 @@ extension LocalDateTime: CustomStringConvertible {
 extension DayMonthYear: CustomStringConvertible {
   
   public var description: String {
-    return String(format: "%d.%02d.%04d", day, month, year)
+    String(format: "%d.%02d.%04d", day, month, year)
   }
 }
 
@@ -31,7 +31,7 @@ extension DayMonthYear: CustomStringConvertible {
 extension DayMonthYearPeriod: CustomStringConvertible {
   
   public var description: String {
-    return start == end ? "\(start)" : "\(start) — \(end)"
+    start == end ? "\(start)" : "\(start) — \(end)"
   }
 }
 

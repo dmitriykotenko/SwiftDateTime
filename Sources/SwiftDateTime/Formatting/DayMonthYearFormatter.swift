@@ -37,12 +37,12 @@ public class DayMonthYearFormatter {
     let firstMinus = string.prefix { $0 == "-" }
     let withoutMinus = string.drop { $0 == "-" }
     guard firstMinus.count <= 1 else { return .failure(.invalidDayMonthYear(string)) }
-    
+
     let yearSign = firstMinus.isEmpty ? 1 : -1
     let splittedString = withoutMinus.components(separatedBy: ".")
     
     guard splittedString.count == 3 else { return .failure(.invalidDayMonthYear(string)) }
-    
+
     return dayMonthYear(
       string: string,
       yearSign: yearSign,
@@ -59,12 +59,12 @@ public class DayMonthYearFormatter {
     let firstMinus = string.prefix { $0 == "-" }
     let withoutMinus = string.drop { $0 == "-" }
     guard firstMinus.count <= 1 else { return .failure(.invalidDayMonthYear(string)) }
-    
+
     let yearSign = firstMinus.isEmpty ? 1 : -1
     let splittedString = withoutMinus.components(separatedBy: "-")
     
     guard splittedString.count == 3 else { return .failure(.invalidDayMonthYear(string)) }
-    
+
     return dayMonthYear(
       string: string,
       yearSign: yearSign,
@@ -84,7 +84,7 @@ public class DayMonthYearFormatter {
       monthComponent.count == 2,
       dayComponent.count == 2
       else { return .failure(.invalidDayMonthYear(string)) }
-    
+
     let year = yearComponent.asNonNegativeInteger
     let month = monthComponent.asNonNegativeInteger
     let day = dayComponent.asNonNegativeInteger

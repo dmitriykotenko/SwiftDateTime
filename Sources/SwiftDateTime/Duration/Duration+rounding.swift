@@ -19,6 +19,6 @@ public extension Duration {
   }
 
   func rounded(downTo interval: Duration) -> Duration {
-    return self - positiveRemainder(divider: interval)
+    self - positiveRemainder(divider: interval)
   }
 }

@@ -23,11 +23,11 @@ class DurationRoundingTester: XCTestCase, DurationGenerator {
   }
   
   func randomDivisible() -> Duration {
-    return .random(in: (-Duration.approximatelyFiveYears)...Duration.approximatelyFiveYears)
+    .random(in: (-Duration.approximatelyFiveYears)...Duration.approximatelyFiveYears)
   }
   
   func randomDivider() -> Duration {
-    return .random(in: 1.milliseconds...10.hours)
+    .random(in: 1.milliseconds...10.hours)
   }
 }
 

@@ -43,7 +43,7 @@ class AbsoluteDayParser: Chronology {
   }
   
   private func detachCenturies(epochDay: Int) -> PeriodAndDay {
-    return split(
+    split(
       day: epochDay,
       into: daysPerNonLeapCentury,
       maximumPeriods: centuriesPerEpoch - 1
@@ -61,7 +61,7 @@ class AbsoluteDayParser: Chronology {
   }
   
   private func detachYears(leapCycleDay: Int) -> PeriodAndDay {
-    return split(day: leapCycleDay, into: 365, maximumPeriods: 3)
+    split(day: leapCycleDay, into: 365, maximumPeriods: 3)
   }
 
   private func split(day: Int,
@@ -75,6 +75,6 @@ class AbsoluteDayParser: Chronology {
   private typealias PeriodAndDay = (period: Int, day: Int)
 
   private func divide(_ a: Int, by b: Int, maximumValue: Int = Int.max) -> Int {
-    return min(a / b, maximumValue)
+    min(a / b, maximumValue)
   }
 }

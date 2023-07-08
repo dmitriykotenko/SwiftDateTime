@@ -18,17 +18,17 @@ class DayOfYearConverter {
   }
   
   func dayOfYear(day: Int, month: Int) -> Int {
-    return monthStart(month) + day
+    monthStart(month) + day
   }
   
   private func monthStart(_ month: Int) -> Int {
     let previousMonths = (1..<month)
     
-    return previousMonths.map ( monthLength ).reduce(0, +)
+    return previousMonths.map(monthLength).reduce(0, +)
   }
   
   func yearLength() -> Int {
-    return isLeapYear() ? 366 : 365
+    isLeapYear() ? 366 : 365
   }
   
   func monthLength(_ month: Int) -> Int {
@@ -41,10 +41,9 @@ class DayOfYearConverter {
   }
   
   func isLeapYear() -> Bool {
-    return
-        (year % 400 == 0) ? true :
-        (year % 100 == 0) ? false :
-        (year % 4 == 0) ? true :
-        false
+    (year % 400 == 0) ? true :
+    (year % 100 == 0) ? false :
+    (year % 4 == 0) ? true :
+    false
   }
 }

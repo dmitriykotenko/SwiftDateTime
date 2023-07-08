@@ -29,7 +29,7 @@ public struct DateTime: Codable, Equatable, Hashable {
   public func copy(date: DayMonthYear? = nil,
                    time: HoursMinutesSeconds? = nil,
                    timeZoneOffset: Duration? = nil) -> DateTime {
-    return DateTime(
+    DateTime(
       date: date ?? self.date,
       time: time ?? self.time,
       timeZoneOffset: timeZoneOffset ?? self.timeZoneOffset
@@ -38,7 +38,7 @@ public struct DateTime: Codable, Equatable, Hashable {
   
   public func copy(localDateTime: LocalDateTime? = nil,
                    timeZoneOffset: Duration? = nil) -> DateTime {
-    return DateTime(
+    DateTime(
       date: localDateTime?.date ?? self.date,
       time: localDateTime?.time ?? self.time,
       timeZoneOffset: timeZoneOffset ?? self.timeZoneOffset
@@ -46,7 +46,7 @@ public struct DateTime: Codable, Equatable, Hashable {
   }
   
   public var local: LocalDateTime {
-    return LocalDateTime(
+    LocalDateTime(
       date: date,
       time: time
     )

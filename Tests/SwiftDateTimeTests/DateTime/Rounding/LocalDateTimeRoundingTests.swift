@@ -91,11 +91,11 @@ class LocalDateTimeRoundingTests: XCTestCase, DateTimeGenerator, DurationGenerat
   }
   
   func randomDivisible() -> LocalDateTime {
-    return randomDateTime().local
+    randomDateTime().local
   }
   
   func randomDivider() -> Duration {
-    return .random(in: 1.milliseconds...Duration.day)
+    .random(in: 1.milliseconds...Duration.day)
   }
 }
 
@@ -103,6 +103,6 @@ class LocalDateTimeRoundingTests: XCTestCase, DateTimeGenerator, DurationGenerat
 private extension LocalDateTime {
   
   func positiveRemainder(divider: Duration) -> Duration {
-    return time.durationFromMidnight.positiveRemainder(divider: divider)
+    time.durationFromMidnight.positiveRemainder(divider: divider)
   }
 }

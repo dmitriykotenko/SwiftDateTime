@@ -30,7 +30,7 @@ extension DateTimeGenerator {
   func randomDateTime(date: DayMonthYear? = nil,
                       time: HoursMinutesSeconds? = nil,
                       timeZoneOffset: Duration? = nil) -> DateTime {
-    return DateTime(
+    DateTime(
       date: date ?? randomDayMonthYear(),
       time: time ?? randomHoursMinutesSeconds(),
       timeZoneOffset: timeZoneOffset ?? randomTimeZoneOffset()
@@ -39,7 +39,7 @@ extension DateTimeGenerator {
 
   func randomLocalDateTime(date: DayMonthYear? = nil,
                       time: HoursMinutesSeconds? = nil) -> LocalDateTime {
-    return LocalDateTime(
+    LocalDateTime(
       date: date ?? randomDayMonthYear(),
       time: time ?? randomHoursMinutesSeconds()
     )
@@ -83,7 +83,7 @@ extension DateTimeGenerator {
                                  minutes: Int? = nil,
                                  seconds: Int? = nil,
                                  milliseconds: Int? = nil) -> HoursMinutesSeconds {
-    return HoursMinutesSeconds(
+    HoursMinutesSeconds(
       hours: hours ?? Int.random(in: 0..<24),
       minutes: minutes ?? Int.random(in: 0..<60),
       seconds: seconds ?? Int.random(in: 0..<60),

@@ -9,6 +9,6 @@ extension HoursMinutesSeconds {
   /// Subtracts one time from another.
   /// Returns result as number of seconds between given times.
   public static func - (this: HoursMinutesSeconds, that: HoursMinutesSeconds) -> Duration {
-    return this.durationFromMidnight - that.durationFromMidnight
+    this.durationFromMidnight - that.durationFromMidnight
   }
 }

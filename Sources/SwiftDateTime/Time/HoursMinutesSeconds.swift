@@ -30,7 +30,7 @@ public struct HoursMinutesSeconds: Codable, Equatable, Hashable {
   }
     
   public var durationFromMidnight: Duration {
-    return Duration(
+    Duration(
       milliseconds: (hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds
     )
   }

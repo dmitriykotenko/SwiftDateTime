@@ -319,11 +319,11 @@ class DateTimeFormatterTests: XCTestCase & DateTimeGenerator {
 private extension DateTimeFormatterTests {
   
   func formatAndThenParse(_ dateTime: DateTime) -> ParseResult<DateTime> {
-    return formatter.dateTime(string: formatter.string(dateTime: dateTime))
+    formatter.dateTime(string: formatter.string(dateTime: dateTime))
   }
   
   func parseAndThenFormat(_ string: String) -> ParseResult<String> {
-    return formatter.dateTime(string: string)
+    formatter.dateTime(string: string)
       .map { formatter.string(dateTime: $0) }
   }
 

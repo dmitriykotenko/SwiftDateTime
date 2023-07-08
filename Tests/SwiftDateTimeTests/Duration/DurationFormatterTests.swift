@@ -93,6 +93,6 @@ class DurationFormatterTests: XCTestCase {
   }
   
   private func randomDuration() -> Duration {
-    return Duration(milliseconds: Int.random(in: 0...3000000000))
+    Duration(milliseconds: Int.random(in: 0...3000000000))
   }
 }

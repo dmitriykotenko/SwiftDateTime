@@ -4,23 +4,23 @@
 public extension Int {
   
   var hours: Duration {
-    return Duration(negative: signum() < 0, hours: abs(self))
+    Duration(negative: signum() < 0, hours: abs(self))
   }
 
   var minutes: Duration {
-    return Duration(negative: signum() < 0, minutes: abs(self))
+    Duration(negative: signum() < 0, minutes: abs(self))
   }
 
   var seconds: Duration {
-    return Duration(negative: signum() < 0, seconds: abs(self))
+    Duration(negative: signum() < 0, seconds: abs(self))
   }
   
   var thousandths: Duration {
-    return Duration(negative: signum() < 0, thousandths: abs(self))
+    Duration(negative: signum() < 0, thousandths: abs(self))
   }
   
   var milliseconds: Duration {
-    return Duration(milliseconds: self)
+    Duration(milliseconds: self)
   }
 }
 
@@ -28,6 +28,6 @@ public extension Int {
 public extension Int64 {
   
   var milliseconds: Duration {
-    return Duration(milliseconds: self)
+    Duration(milliseconds: self)
   }
 }

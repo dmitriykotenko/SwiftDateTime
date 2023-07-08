@@ -8,7 +8,7 @@ public class DateTimesManipulator {
   
   public func dateTime(_ dateTime: DateTime,
                        plus duration: Duration) -> DateTime {
-    return DateTime(
+    DateTime(
       localDateTime: localDateTime(dateTime.local, plus: duration),
       timeZoneOffset: dateTime.timeZoneOffset
     )
@@ -16,7 +16,7 @@ public class DateTimesManipulator {
 
   public func dateTime(_ dateTime: DateTime,
                        minus duration: Duration) -> DateTime {
-    return DateTime(
+    DateTime(
       localDateTime: localDateTime(dateTime.local, minus: duration),
       timeZoneOffset: dateTime.timeZoneOffset
     )
@@ -34,7 +34,7 @@ public class DateTimesManipulator {
   
   public func localDateTime(_ dateTime: LocalDateTime,
                             minus duration: Duration) -> LocalDateTime {
-    return localDateTime(
+    localDateTime(
       dateTime,
       plus: -duration
     )
@@ -52,7 +52,7 @@ public class DateTimesManipulator {
 
   private func daysAndTime(_ time: HoursMinutesSeconds,
                            plus duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {
-    return daysAndTime(time.durationFromMidnight + duration)
+    daysAndTime(time.durationFromMidnight + duration)
   }
 
   private func daysAndTime(_ duration: Duration) -> (days: Int, time: HoursMinutesSeconds) {

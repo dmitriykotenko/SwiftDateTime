@@ -4,7 +4,7 @@
 public extension LocalDateTime {
   
   var weekday: Weekday {
-    return date.weekday
+    date.weekday
   }
   
   static func - (this: LocalDateTime, that: LocalDateTime) -> Duration {
@@ -15,21 +15,21 @@ public extension LocalDateTime {
   }
   
   static func + (dateTime: LocalDateTime, duration: Duration) -> LocalDateTime {
-    return DateTimesManipulator()
+    DateTimesManipulator()
       .localDateTime(dateTime, plus: duration)
   }
   
   static func - (dateTime: LocalDateTime, duration: Duration) -> LocalDateTime {
-    return dateTime + (-duration)
+    dateTime + (-duration)
   }
   
   static func + (dateTime: LocalDateTime, calendarDuration: CalendarDuration) -> LocalDateTime {
-    return dateTime.copy(
+    dateTime.copy(
       date: dateTime.date + calendarDuration
     )
   }
   
   static func - (dateTime: LocalDateTime, calendarDuration: CalendarDuration) -> LocalDateTime {
-    return dateTime + (-calendarDuration)
+    dateTime + (-calendarDuration)
   }
 }

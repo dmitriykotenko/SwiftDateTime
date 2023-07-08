@@ -95,8 +95,8 @@ class DurationsManipulatorTests: XCTestCase, DurationGenerator {
   }
 
   private func isInvalidDuration(_ duration: Duration) -> Bool {
-    return duration.seconds < 0
-      || duration.thousandths >= 1000
-      || duration.thousandths < 0
+    duration.seconds < 0
+    || duration.thousandths >= 1000
+    || duration.thousandths < 0
   }
 }

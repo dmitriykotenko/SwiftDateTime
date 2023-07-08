@@ -26,8 +26,7 @@ public class TimeZoneOffsetFormatter {
 
   public func timeZoneOffsetFromDateString(_ dateString: String,
                                            dateFormat: String) -> ParseResult<Duration> {
-    return
-      timeZoneComponent(dateString: dateString, dateFormat: dateFormat)
+    timeZoneComponent(dateString: dateString, dateFormat: dateFormat)
       .map { timeZoneOffsetFromString($0) }
       ?? .success(.zero)
   }
@@ -71,7 +70,7 @@ public class TimeZoneOffsetFormatter {
   }
 
   private func hoursMinutes(from string: String) -> ParseResult<HoursMinutesSeconds> {
-    return components(from: string).flatMap {
+    components(from: string).flatMap {
       let maybeHours = ($0.first).flatMap { Int($0) }
       let maybeMinutes = ($0.dropFirst().first).flatMap { Int($0) }
 

@@ -4,11 +4,11 @@
 public extension CalendarDuration {
   
   static func days(_ days: Int) -> CalendarDuration {
-    return CalendarDuration(days: days)
+    CalendarDuration(days: days)
   }
   
   static func weeks(_ weeks: Int) -> CalendarDuration {
-    return CalendarDuration(days: weeks * 7)
+    CalendarDuration(days: weeks * 7)
   }
 }
 
@@ -16,10 +16,10 @@ public extension CalendarDuration {
 public extension Int {
   
   var days: CalendarDuration {
-    return .days(self)
+    .days(self)
   }
   
   var weeks: CalendarDuration {
-    return .weeks(self)
+    .weeks(self)
   }
 }

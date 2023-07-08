@@ -18,7 +18,7 @@ class AbsoluteDayBuilder: Chronology {
   ///
   /// If given year is less than referenceYear, returns negative number of days.
   private func daysSinceReferenceYear(_ year: Int) -> Int {
-    return (year - referenceYear) * 365 + leapFactor(year)
+    (year - referenceYear) * 365 + leapFactor(year)
   }
 
   /// Number of leap years between referenceYear and given year.
@@ -40,7 +40,7 @@ class AbsoluteDayBuilder: Chronology {
   }
   
   private func century(_ year: Int) -> Int {
-    return ((year - 1) / 100) + 1
+    ((year - 1) / 100) + 1
   }
   
   private func epochsToBeatReferenceYear(year: Int) -> Int {
@@ -51,6 +51,6 @@ class AbsoluteDayBuilder: Chronology {
   }
   
   private func addEpochs(_ epochs: Int, to year: Int) -> Int {
-    return year + epochs * yearsPerEpoch
+    year + epochs * yearsPerEpoch
   }
 }

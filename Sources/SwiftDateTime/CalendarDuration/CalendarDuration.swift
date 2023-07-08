@@ -8,7 +8,7 @@ public struct CalendarDuration: Codable, Equatable, Hashable {
   public var days: Int
   
   public var signum: Int {
-    return Int(days.signum())
+    Int(days.signum())
   }
   
   public init(days: Int) {
@@ -20,6 +20,6 @@ public struct CalendarDuration: Codable, Equatable, Hashable {
 extension CalendarDuration: Comparable {
   
   public static func < (this: CalendarDuration, that: CalendarDuration) -> Bool {
-    return this.days < that.days
+    this.days < that.days
   }
 }

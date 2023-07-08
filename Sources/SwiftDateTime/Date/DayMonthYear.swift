@@ -15,9 +15,8 @@ public struct DayMonthYear: Codable, Equatable, Hashable {
   
   public func copy(day: Int? = nil,
                    month: Int? = nil,
-                   year: Int? = nil) -> DayMonthYear {
-    
-    return DayMonthYear(
+                   year: Int? = nil) -> DayMonthYear {    
+    DayMonthYear(
       day: day ?? self.day,
       month: month ?? self.month,
       year: year ?? self.year
@@ -25,7 +24,7 @@ public struct DayMonthYear: Codable, Equatable, Hashable {
   }
   
   public var monthYear: MonthYear {
-    return MonthYear(month: month, year: year)
+    MonthYear(month: month, year: year)
   }
   
   public static let distantPast = DayMonthYear(day: 1, month: 1, year: -5000)

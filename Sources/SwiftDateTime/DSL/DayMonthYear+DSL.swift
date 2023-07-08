@@ -4,26 +4,26 @@
 public extension DayMonthYear {
 
   var nextDay: DayMonthYear {
-    return DatesManipulator().nextDay(self)
+    DatesManipulator().nextDay(self)
   }
   
   var previousDay: DayMonthYear {
-    return DatesManipulator().previousDay(self)
+    DatesManipulator().previousDay(self)
   }
 
   static func + (date: DayMonthYear,
                  duration: CalendarDuration) -> DayMonthYear {
-    return DatesManipulator().date(date, plus: duration)
+    DatesManipulator().date(date, plus: duration)
   }
   
   static func - (date: DayMonthYear,
                  duration: CalendarDuration) -> DayMonthYear {
-    return date + (-duration)
+    date + (-duration)
   }
   
   static func - (this: DayMonthYear,
                  that: DayMonthYear) -> CalendarDuration {
-    return DatesManipulator().duration(from: that, to: this)
+    DatesManipulator().duration(from: that, to: this)
   }
 }
 
@@ -31,26 +31,26 @@ public extension DayMonthYear {
 public extension DayMonthYear {
   
   var weekday: Weekday {
-    return Weeker().weekday(self)
+    Weeker().weekday(self)
   }
   
   var week: DayMonthYearPeriod {
-    return Weeker().week(self)
+    Weeker().week(self)
   }
   
   var weekStart: DayMonthYear {
-    return Weeker().weekstart(self)
+    Weeker().weekstart(self)
   }
   
   var weekEnd: DayMonthYear {
-    return Weeker().weekend(self)
+    Weeker().weekend(self)
   }
   
   var nextWeek: DayMonthYearPeriod {
-    return Weeker().week(self + 7.days)
+    Weeker().week(self + 7.days)
   }
   
   var previousWeek: DayMonthYearPeriod {
-    return Weeker().week(self - 7.days)
+    Weeker().week(self - 7.days)
   }
 }

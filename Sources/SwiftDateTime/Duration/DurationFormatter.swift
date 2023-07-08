@@ -49,6 +49,6 @@ public class DurationFormatter {
   }
   
   private func formatSign(_ sign: Int) -> String {
-    return sign == -1 ? "−" : ""
+    sign == -1 ? "−" : ""
   }
 }

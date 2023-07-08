@@ -51,7 +51,7 @@ public class DateTimeFormatter {
   
   private func stringFromDateTime(_ dateTime: DateTime,
                                   formatter: DateFormatter) -> String {
-    return formatter.string(from: dateTime.moment)
+    formatter.string(from: dateTime.moment)
   }
   
   public func dateTime(string: String) -> ParseResult<DateTime> {

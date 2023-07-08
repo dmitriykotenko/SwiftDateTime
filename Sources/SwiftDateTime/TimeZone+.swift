@@ -7,6 +7,6 @@ import Foundation
 public extension TimeZone {
   
   static var utc: TimeZone {
-    return TimeZone(abbreviation: "UTC")!
+    TimeZone(abbreviation: "UTC")!
   }
 }

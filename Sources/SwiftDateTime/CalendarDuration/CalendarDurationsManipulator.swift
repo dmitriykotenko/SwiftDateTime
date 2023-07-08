@@ -4,22 +4,22 @@
 public extension CalendarDuration {
   
   static prefix func - (duration: CalendarDuration) -> CalendarDuration {
-    return CalendarDuration(days: -duration.days)
+    CalendarDuration(days: -duration.days)
   }
   
   static func + (this: CalendarDuration, that: CalendarDuration) -> CalendarDuration {
-    return CalendarDuration(days: this.days + that.days)
+    CalendarDuration(days: this.days + that.days)
   }
   
   static func - (this: CalendarDuration, that: CalendarDuration) -> CalendarDuration {
-    return this + (-that)
+    this + (-that)
   }
   
   static func * (duration: CalendarDuration, multiplier: Int) -> CalendarDuration {
-    return CalendarDuration(days: duration.days * multiplier)
+    CalendarDuration(days: duration.days * multiplier)
   }
   
   static func / (duration: CalendarDuration, divider: Int) -> CalendarDuration {
-    return CalendarDuration(days: duration.days / divider)
+    CalendarDuration(days: duration.days / divider)
   }
 }

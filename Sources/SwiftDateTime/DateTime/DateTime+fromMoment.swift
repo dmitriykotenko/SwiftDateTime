@@ -45,9 +45,9 @@ private extension Int {
     let remainder = positiveRemainder(modulo: interval)
 
     return
-    (remainder * 2 < interval) ?
-    (self - remainder) :
-    (self + interval - remainder)
+      (remainder * 2 < interval) ?
+      (self - remainder) :
+      (self + interval - remainder)
   }
 
   private func positiveRemainder(modulo divider: Int) -> Int {

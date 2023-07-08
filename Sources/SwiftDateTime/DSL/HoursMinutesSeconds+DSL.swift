@@ -14,6 +14,6 @@ public extension HoursMinutesSeconds {
   }
 
   static func - (time: HoursMinutesSeconds, duration: Duration) -> HoursMinutesSeconds {
-    return time + (-duration)
+    time + (-duration)
   }
 }

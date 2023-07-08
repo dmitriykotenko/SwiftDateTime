@@ -25,38 +25,35 @@ public extension DateTime {
     }
   }
 
-  var weekday: Weekday {
-    return local.weekday
-  }
+  var weekday: Weekday { local.weekday }
 
   func converted(toTimeZoneOffset newOffset: Duration) -> DateTime {
-    return DateTimesManipulator().dateTime(
+    DateTimesManipulator().dateTime(
       self,
       convertedToTimeZoneOffset: newOffset
     )
   }
 
   static func - (this: DateTime, that: DateTime) -> Duration {
-
-    return (this.local - that.local) + (that.timeZoneOffset - this.timeZoneOffset)
+    (this.local - that.local) + (that.timeZoneOffset - this.timeZoneOffset)
   }
 
   static func + (dateTime: DateTime, duration: Duration) -> DateTime {
-    return DateTimesManipulator()
+    DateTimesManipulator()
       .dateTime(dateTime, plus: duration)
   }
   
   static func - (dateTime: DateTime, duration: Duration) -> DateTime {
-    return dateTime + (-duration)
+    dateTime + (-duration)
   }
   
   static func + (dateTime: DateTime, calendarDuration: CalendarDuration) -> DateTime {
-    return dateTime.copy(
+    dateTime.copy(
       date: dateTime.date + calendarDuration
     )
   }
   
   static func - (dateTime: DateTime, calendarDuration: CalendarDuration) -> DateTime {
-    return dateTime + (-calendarDuration)
+    dateTime + (-calendarDuration)
   }
 }

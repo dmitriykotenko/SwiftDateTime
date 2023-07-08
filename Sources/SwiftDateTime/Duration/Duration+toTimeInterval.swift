@@ -6,6 +6,6 @@ import Foundation
 public extension Duration {
   
   var toTimeInterval: TimeInterval {
-    return TimeInterval(milliseconds) / 1000
+    TimeInterval(milliseconds) / 1000
   }
 }

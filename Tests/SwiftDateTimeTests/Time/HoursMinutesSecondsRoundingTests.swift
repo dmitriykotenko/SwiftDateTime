@@ -104,7 +104,7 @@ class HoursMinutesSecondsRoundingTests: XCTestCase, DateTimeGenerator {
   }
   
   func randomDivider() -> Duration {
-    return .random(in: 1.milliseconds...1000.hours)
+    .random(in: 1.milliseconds...1000.hours)
   }
 }
 

@@ -4,51 +4,51 @@
 public extension Int {
   
   func january(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 1, year: year)
+    DayMonthYear(day: self, month: 1, year: year)
   }
 
   func february(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 2, year: year)
+    DayMonthYear(day: self, month: 2, year: year)
   }
 
   func march(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 3, year: year)
+    DayMonthYear(day: self, month: 3, year: year)
   }
 
   func april(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 4, year: year)
+    DayMonthYear(day: self, month: 4, year: year)
   }
 
   func may(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 5, year: year)
+    DayMonthYear(day: self, month: 5, year: year)
   }
 
   func june(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 6, year: year)
+    DayMonthYear(day: self, month: 6, year: year)
   }
 
   func july(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 7, year: year)
+    DayMonthYear(day: self, month: 7, year: year)
   }
 
   func august(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 8, year: year)
+    DayMonthYear(day: self, month: 8, year: year)
   }
 
   func september(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 9, year: year)
+    DayMonthYear(day: self, month: 9, year: year)
   }
 
   func october(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 10, year: year)
+    DayMonthYear(day: self, month: 10, year: year)
   }
 
   func november(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 11, year: year)
+    DayMonthYear(day: self, month: 11, year: year)
   }
 
   func december(_ year: Int) -> DayMonthYear {
-    return DayMonthYear(day: self, month: 12, year: year)
+    DayMonthYear(day: self, month: 12, year: year)
   }
 }
 
@@ -59,7 +59,7 @@ public extension DayMonthYear {
             _ minutes: Int,
             _ seconds: Int = 0,
             _ milliseconds: Int = 0) -> LocalDateTime {
-    return time(
+    time(
       HoursMinutesSeconds(
         hours: hours,
         minutes: minutes,
@@ -70,7 +70,7 @@ public extension DayMonthYear {
   }
   
   func time(_ time: HoursMinutesSeconds) -> LocalDateTime {
-    return LocalDateTime(
+    LocalDateTime(
       date: self,
       time: time
     )
@@ -81,14 +81,14 @@ public extension DayMonthYear {
 public extension LocalDateTime {
   
   func utc() -> DateTime {
-    return DateTime(
+    DateTime(
       localDateTime: self,
       timeZoneOffset: .zero
     )
   }
   
   func zone(hours: Int) -> DateTime {
-    return DateTime(
+    DateTime(
       localDateTime: self,
       timeZoneOffset: Duration(
         negative: hours < 0,
@@ -98,7 +98,7 @@ public extension LocalDateTime {
   }
   
   func zone(_ timeZoneOffset: Duration) -> DateTime {
-    return DateTime(
+    DateTime(
       localDateTime: self,
       timeZoneOffset: timeZoneOffset
     )

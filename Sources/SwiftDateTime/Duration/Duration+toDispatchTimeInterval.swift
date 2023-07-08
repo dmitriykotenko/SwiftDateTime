@@ -6,6 +6,6 @@ import Foundation
 public extension Duration {
     
   var toDispatchTimeInterval: DispatchTimeInterval {
-    return .milliseconds(Int(milliseconds))
+    .milliseconds(Int(milliseconds))
   }
 }

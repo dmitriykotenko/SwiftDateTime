@@ -3,20 +3,16 @@
 
 extension Int {
   
-  static var nanosecondsPerMillisecond: Int {
-    return 1_000_000
-  }
+  static var nanosecondsPerMillisecond: Int { 1_000_000 }
 }
 
 
 extension Int64 {
   
-  static var millisecondsPerDay: Int64 {
-    return 24 * 3600 * 1000
-  }
+  static var millisecondsPerDay: Int64 { 24 * 3600 * 1000 }
   
   func positiveRemainder(modulo divider: Int64) -> Int64 {
-    return self - (divideWithoutRemainder(divider) * divider)
+    self - (divideWithoutRemainder(divider) * divider)
   }
   
   func divideWithoutRemainder(_ divider: Int64) -> Int64 {

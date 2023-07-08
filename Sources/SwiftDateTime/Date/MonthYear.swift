@@ -12,9 +12,8 @@ public struct MonthYear: Codable, Equatable, Hashable {
   }
   
   public func copy(month: Int? = nil,
-                   year: Int? = nil) -> MonthYear {
-    
-    return MonthYear(
+                   year: Int? = nil) -> MonthYear {    
+    MonthYear(
       month: month ?? self.month,
       year: year ?? self.year
     )

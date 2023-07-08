@@ -7,23 +7,23 @@ public struct DayMonthYearPeriod: Codable, Equatable, Hashable {
   public let end: DayMonthYear
   
   public func contains(_ dayMonthYear: DayMonthYear) -> Bool {
-    return dayMonthYear >= start && dayMonthYear < end
+    dayMonthYear >= start && dayMonthYear < end
   }
   
   public func contains(_ localDateTime: LocalDateTime) -> Bool {
-    return contains(localDateTime.date)
+    contains(localDateTime.date)
   }
 
   public func contains(_ dateTime: DateTime) -> Bool {
-    return contains(dateTime.local)
+    contains(dateTime.local)
   }
   
   public var days: [DayMonthYear] {
-    return Array(DayMonthYearsSequence(self))
+    Array(DayMonthYearsSequence(self))
   }
   
   public var duration: CalendarDuration {
-    return DatesManipulator().duration(from: start, to: end)
+    DatesManipulator().duration(from: start, to: end)
   }
 }
 

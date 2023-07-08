@@ -9,12 +9,9 @@ public struct Duration: Codable, Equatable, Hashable {
   
   public var milliseconds: Int64
   
-  public var signum: Int {
-    return Int(milliseconds.signum())
-  }
-  
-  public var seconds: Int { return Int(abs(milliseconds)) / 1000 }
-  public var thousandths: Int { return Int(abs(milliseconds)) % 1000 }
+  public var signum: Int { Int(milliseconds.signum()) }
+  public var seconds: Int { Int(abs(milliseconds)) / 1000 }
+  public var thousandths: Int { Int(abs(milliseconds)) % 1000 }
   
   public init(milliseconds: Int64) {
     self.milliseconds = milliseconds
@@ -49,6 +46,6 @@ public struct Duration: Codable, Equatable, Hashable {
 extension Duration: Comparable {
   
   public static func < (this: Duration, that: Duration) -> Bool {
-    return this.milliseconds < that.milliseconds
+    this.milliseconds < that.milliseconds
   }
 }
