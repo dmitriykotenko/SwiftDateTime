@@ -12,7 +12,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
   func testAdditionOfFewHours() {
     check(
       dateTime: 5.february(2019).time(11, 25, 53, 11).utc(),
-      withTimeZoneOffsetChangedTo: Duration(hours: 3),
+      convertedToTimeZoneOffset: Duration(hours: 3),
       is: 5.february(2019).time(14, 25, 53, 11).zone(Duration(hours: 3))
     )
   }
@@ -20,7 +20,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
   func testSubtractingOfFewHours() {
     check(
       dateTime: 31.december(2018).time(6, 05, 48, 318).zone(Duration(hours: 3)),
-      withTimeZoneOffsetChangedTo: Duration(hours: -4),
+      convertedToTimeZoneOffset: Duration(hours: -4),
       is: 30.december(2018).time(23, 05, 48, 318).zone(Duration(hours: -4))
     )
   }
@@ -83,7 +83,7 @@ class DateTimesManipulatorTimeZoneChangingTests: XCTestCase, DateTimeGenerator, 
   }
 
   private func check(dateTime: DateTime,
-                     withTimeZoneOffsetChangedTo timeZoneOffset: Duration,
+                     convertedToTimeZoneOffset timeZoneOffset: Duration,
                      is expectedDateTime: DateTime) {
     let actualDateTime = manipulator.dateTime(
       dateTime,
