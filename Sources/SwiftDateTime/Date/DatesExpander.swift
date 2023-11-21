@@ -5,7 +5,9 @@ public class DatesExpander {
   
   let manipulator = DatesManipulator()
   let weeker = Weeker()
-  
+
+  public init() {}
+
   public func expand(_ dayMonthYear: DayMonthYear,
                      to unit: PeriodUnit) -> DayMonthYearPeriod {
     switch unit {

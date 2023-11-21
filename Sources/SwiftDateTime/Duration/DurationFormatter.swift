@@ -5,7 +5,9 @@ import Foundation
 
 
 public class DurationFormatter {
-  
+
+  public init() {}
+
   public func formatApproximately(_ duration: Duration) -> String {
     let sign = duration.seconds.signum()
     let absSeconds = abs(duration.seconds)

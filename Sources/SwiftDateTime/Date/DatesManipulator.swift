@@ -5,7 +5,9 @@ public class DatesManipulator {
   
   let parser = AbsoluteDayParser()
   let builder = AbsoluteDayBuilder()
-  
+
+  public init() {}
+
   public func nextDay(_ dayMonthYear: DayMonthYear) -> DayMonthYear {
     date(dayMonthYear, plusDays: 1)
   }

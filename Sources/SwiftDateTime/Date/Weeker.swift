@@ -3,6 +3,8 @@
 
 public class Weeker {
 
+  public init() {}
+
   private let reference = (
     dayMonthYear: DayMonthYear(day: 1, month: 1, year: 2001),
     weekday: Weekday.monday

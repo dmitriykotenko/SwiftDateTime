@@ -5,7 +5,9 @@ public class DatesSplitter {
   
   let manipulator = DatesManipulator()
   let expander = DatesExpander()
-  
+
+  public init() {}
+
   public func last(_ unit: PeriodUnit,
                    from period: DayMonthYearPeriod) -> [DayMonthYearPeriod] {
     last(1, unit, from: period)

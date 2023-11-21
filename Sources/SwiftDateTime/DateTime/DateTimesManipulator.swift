@@ -5,6 +5,8 @@ import Foundation
 
 
 public class DateTimesManipulator {
+
+  public init() {}
   
   public func dateTime(_ dateTime: DateTime,
                        plus duration: Duration) -> DateTime {
