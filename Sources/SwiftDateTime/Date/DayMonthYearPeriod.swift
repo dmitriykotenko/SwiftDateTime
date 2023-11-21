@@ -5,6 +5,11 @@ public struct DayMonthYearPeriod: Codable, Equatable, Hashable {
   
   public let start: DayMonthYear
   public let end: DayMonthYear
+
+  public init(start: DayMonthYear, end: DayMonthYear) {
+    self.start = start
+    self.end = end
+  }
   
   public func contains(_ dayMonthYear: DayMonthYear) -> Bool {
     dayMonthYear >= start && dayMonthYear < end

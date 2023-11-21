@@ -8,6 +8,12 @@ public struct LocalDateTime: Codable, Equatable, Hashable {
   
   public let date: DayMonthYear
   public let time: HoursMinutesSeconds
+
+  public init(date: DayMonthYear,
+              time: HoursMinutesSeconds) {
+    self.date = date
+    self.time = time
+  }
   
   public func copy(date: DayMonthYear? = nil,
                    time: HoursMinutesSeconds? = nil) -> LocalDateTime {
